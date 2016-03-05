@@ -26,6 +26,7 @@ package org.gcn.plinguacore.util.psystem.rule.cellLike;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Collection;
 
 import org.gcn.plinguacore.util.HashMultiSet;
 import org.gcn.plinguacore.util.MultiSet;
@@ -97,13 +98,16 @@ class CellLikeRule extends AbstractRule {
 		return true;
 	}
 
-	/*public boolean isString(){
 
-		if(leftHandRule.toString().startsWith("<") && rightHandRule.toString().startsWith("<")){
-			return true;
-		}
-		return false;
-	}*/
+	protected boolean executeSafeString(ChangeableMembrane membrane, 
+		MultiSet<String> environment, long executions){
+
+		CellLikeMembrane outerClm = (CellLikeMembrane) membrane;
+		
+
+		return true;
+	}
+
 
 	@Override
 	protected boolean executeSafe(ChangeableMembrane membrane,
@@ -118,52 +122,39 @@ class CellLikeRule extends AbstractRule {
 		 * rule is subtracted from the membrane multiset
 		 */
 		
-		//System.out.println("CellLikeRule executeSafe membrane (before) has " + membrane.toString());
-		//System.out.println("CellLikeRule : executeSafe");
-		
-		/*if(isString()){
 
-			//Call string stuff here
+		boolean executeRightHand = executeRightHand(membrane, environment, executions);
+
+		if(executeRightHand){
+			int exec = getExecutionsDone();
+			
+			if(isEvol){	
+				subtractMultiSet(
+				getLeftHandRule().getOuterRuleMembrane().getMultiSet(),
+				outerClm.getMultiSet(), executions);
+
+				//System.out.println("CellLikeRule executeSafe : isEvol");
+				//System.out.println("CellLikeRule executeSafe membrane (after) has " + membrane.toString());
+				return true;
+			}
+			else if(exec>0){
+				//System.out.println("CellLikeRule : executeSafe :: executeRightHand=truel exec == " + exec);
+				subtractMultiSet(
+				getLeftHandRule().getOuterRuleMembrane().getMultiSet(),
+				outerClm.getMultiSet(), exec);	
+
+				//System.out.println("CellLikeRule executeSafe membrane (after) has " + membrane.toString());
+				return true;
+			}
+			else{	//JM: Because it will not go to 0, unless it isn't a comm rule -> 0 executions does not go here
+				return false;
+			}
+			
+			//return true;
 		}
-		else{*/
+		else{	//righthand is not executed, we have to subtract the one
 
-
-			boolean executeRightHand = executeRightHand(membrane, environment, executions);
-			//System.out.println("CellLikeRule executeRightHand = " + executeRightHand);
-			if(executeRightHand){
-				//System.out.println("CellLikeRule : executeSafe :: executeRightHand=true");
-				int exec = getExecutionsDone();
-				
-				if(isEvol){	
-					subtractMultiSet(
-					getLeftHandRule().getOuterRuleMembrane().getMultiSet(),
-					outerClm.getMultiSet(), executions);
-
-					//System.out.println("CellLikeRule executeSafe : isEvol");
-					//System.out.println("CellLikeRule executeSafe membrane (after) has " + membrane.toString());
-					return true;
-				}
-				else if(exec>0){
-					//System.out.println("CellLikeRule : executeSafe :: executeRightHand=truel exec == " + exec);
-					subtractMultiSet(
-					getLeftHandRule().getOuterRuleMembrane().getMultiSet(),
-					outerClm.getMultiSet(), exec);	
-
-					//System.out.println("CellLikeRule executeSafe membrane (after) has " + membrane.toString());
-					return true;
-				}
-				else{	//JM: Because it will not go to 0, unless it isn't a comm rule -> 0 executions does not go here
-					return false;
-				}
-				
-				//return true;
-			}
-			else{	//righthand is not executed, we have to subtract the one
-
-			}
-		//}
-
-		//System.out.println("CellLikeRule executeSafe membrane (after) has " + membrane.toString());
+		}
 
 		return false;
 
@@ -829,22 +820,16 @@ class CellLikeRule extends AbstractRule {
 		 */
 		if (!outerClm.isSkinMembrane()) {
 			ret = updateOuterMultiSet((CellLikeNoSkinMembrane) outerClm, executions);
-			//System.out.println("CellLikeRule : executeRightHand :: " + membrane.toString());
-			//System.out.println("CellLikeRule : executeRightHand :: going to updateOuterMultiSet");
-			//System.out.println("CellLikeRule : executeOuterMultiSet :: " + ret);
 
 		} else {
 			/*
 			 * Else, we add the all objects in the right hand rule to the
 			 * environment
 			 */
-			//System.out.println("CellLikeRule : executeRightHand :: just in executeRightHand");
 			if(getLeftHandRule().getOuterRuleMembrane().getEnergy()==0 && getRightHandRule().getOuterRuleMembrane().getEnergy()>=0){
 				//evo
 				isEvol = true;
 				energyAdded = ((int)executions*getRightHandRule().getOuterRuleMembrane().getEnergy());
-				//outerClm.setEnergy(outerClm.getEnergy()+((int)executions*getRightHandRule().getOuterRuleMembrane().getEnergy()));
-				//subtractAndAddMultiSet(outerClm,executions);
 
 				addMultiSet(getRightHandRule().getMultiSet(), environment,
 					executions);

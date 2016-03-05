@@ -75,5 +75,7 @@ public interface IRule {
 	public boolean isSendout();
 	public boolean isExecuted();
 	public void executeDummy(ChangeableMembrane membrane, int count);
+
+	//public boolean isString();
 }
 

@@ -134,6 +134,29 @@ public class HashMultiSet<E> implements MultiSet<E> {
 		return r;
 	}
 
+		
+	/*
+	* find = is the leftHandRule multiset
+	* replace = multiset in membrane that has the find object
+	* replaceWith = is the rightHandRule multiset
+	*/
+	protected boolean replaceString(Collection<?> replace, Object find, 
+		Collection<?> replaceWith, long executions){
+
+		for(int i=0; i<executions; i++){
+			
+			for(int j=0; j<replaceWith.size(); j++){
+				//object = replace.shuffle
+				//object.replace("find","replace", non-deterministic); //<ab.ab.cd>
+				//should have another inner for loop
+			}
+
+		}
+
+		return true;
+
+	}
+
 	/*
 	*	
 	*/

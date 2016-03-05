@@ -247,6 +247,14 @@ public abstract class AbstractRule implements Serializable,IRule {
 	protected abstract boolean executeSafe(ChangeableMembrane membrane,
 			MultiSet<String> environment, long executions);
 
+	
+	/*For CellLikeRule class*/
+	protected boolean executeSafeString(ChangeableMembrane membrane, 
+			MultiSet<String> environment, long executions){
+		return true;
+	}
+
+
 	/**
 	 * Executes the rule on a membrane and an outer multiset a number of times
 	 * indicated by executions and returns if the execution could be committed
@@ -271,7 +279,19 @@ public abstract class AbstractRule implements Serializable,IRule {
 		 * number of executions passed as parameter
 		 */
 		//System.out.println("AbstractRule : execute = true");
+		if(isString()){
+			return executeSafeString(membrane, environment, executions);
+		}
+
 		return executeSafe(membrane, environment, executions);
+	}
+
+	public boolean isString(){
+
+		if(leftHandRule.toString().startsWith("<") && rightHandRule.toString().startsWith("<")){
+			return true;
+		}
+		return false;
 	}
 
 	/**
