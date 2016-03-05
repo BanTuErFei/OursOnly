@@ -97,13 +97,13 @@ class CellLikeRule extends AbstractRule {
 		return true;
 	}
 
-	public boolean isString(){
+	/*public boolean isString(){
 
 		if(leftHandRule.toString().startsWith("<") && rightHandRule.toString().startsWith("<")){
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 	@Override
 	protected boolean executeSafe(ChangeableMembrane membrane,
@@ -121,11 +121,11 @@ class CellLikeRule extends AbstractRule {
 		//System.out.println("CellLikeRule executeSafe membrane (before) has " + membrane.toString());
 		//System.out.println("CellLikeRule : executeSafe");
 		
-		if(isString()){
+		/*if(isString()){
 
 			//Call string stuff here
 		}
-		else{
+		else{*/
 
 
 			boolean executeRightHand = executeRightHand(membrane, environment, executions);
@@ -161,7 +161,7 @@ class CellLikeRule extends AbstractRule {
 			else{	//righthand is not executed, we have to subtract the one
 
 			}
-		}
+		//}
 
 		//System.out.println("CellLikeRule executeSafe membrane (after) has " + membrane.toString());
 
@@ -169,9 +169,9 @@ class CellLikeRule extends AbstractRule {
 
 	}
 
-	public boolean executeStringEvolution(){
+	//public boolean executeStringEvolution(){
 
-	}
+	//}
 	/**
 	 * @see org.gcn.plinguacore.util.psystem.rule.AbstractRule#countExecutions(org.gcn.plinguacore.util.psystem.membrane.ChangeableMembrane)
 	 */

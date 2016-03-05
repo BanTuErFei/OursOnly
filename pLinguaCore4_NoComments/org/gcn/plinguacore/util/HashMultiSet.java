@@ -154,20 +154,23 @@ public class HashMultiSet<E> implements MultiSet<E> {
 		Iterator<E> iteratorMultiset = entrySet.iterator();	
 		if(object instanceof String){
 			String obj = (String)object;
-			obj = obj.substring(1,obj.length()-1);
+			
+			if(obj.startsWith("<")){
+				obj = obj.substring(1,obj.length()-1);
 
-			while(iteratorMultiset.hasNext()){
-				E iterInstance = iteratorMultiset.next();
+				while(iteratorMultiset.hasNext()){
+					E iterInstance = iteratorMultiset.next();
 
-				String iterInstanceString = (String)iterInstance;
-				//System.out.println("iterInstanceString = " + iterInstanceString);
-				//System.out.println("obj = " + obj);
-				
-				if(iterInstanceString.contains("<"+obj+".") || iterInstanceString.contains("."+obj+".") || iterInstanceString.contains("."+obj+">")){
-					//System.out.println("Object is contained");
-					cnt += entrySet.map.get(iterInstance).longValue();	
+					String iterInstanceString = (String)iterInstance;
+					//System.out.println("iterInstanceString = " + iterInstanceString);
+					//System.out.println("obj = " + obj);
+					
+					if(iterInstanceString.contains("<"+obj+".") || iterInstanceString.contains("."+obj+".") || iterInstanceString.contains("."+obj+">")){
+						//System.out.println("Object is contained");
+						cnt += entrySet.map.get(iterInstance).longValue();	
+					}
+
 				}
-
 			}
 		}
 		/*END*/

@@ -4,11 +4,11 @@
     CONFIGURATION: 0
     TIME: 0.0 s.
     MEMORY USED: 62976
-    FREE MEMORY: 58656
+    FREE MEMORY: 58382
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
-    Multiset: ab, fp
+    Multiset: ab, f
     Parent membrane ID: 1
 
     MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
@@ -29,15 +29,15 @@
     STEP: 1
 
     Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
-    1 * #2 [fp]'3 --> [bp]
     1 * #1 [ab]'3 --> [bp]
+    1 * #2 [f]'3 --> [bp]
 
 ***********************************************
 
     CONFIGURATION: 1
-    TIME: 0.006 s.
+    TIME: 0.005 s.
     MEMORY USED: 62976
-    FREE MEMORY: 58328
+    FREE MEMORY: 58382
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
@@ -57,21 +57,23 @@
     Multiset: #
     Internal membranes count: 1
 
-This is a non-halting configuration.
+-----------------------------------------------
+
+    STEP: 2
 
     Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
-    2 * #3 [bp]'3 --> [bp]
+    2 * #3 [bp]'3 --> [b]
 
 ***********************************************
 
     CONFIGURATION: 2
-    TIME: 0.009 s.
+    TIME: 0.008 s.
     MEMORY USED: 62976
-    FREE MEMORY: 58328
+    FREE MEMORY: 58382
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
-    Multiset: bp*2
+    Multiset: b*2
     Parent membrane ID: 1
 
     MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
@@ -87,3 +89,4 @@ This is a non-halting configuration.
     Multiset: #
     Internal membranes count: 1
 
+Halting configuration (No rule can be selected to be executed in the next step).
