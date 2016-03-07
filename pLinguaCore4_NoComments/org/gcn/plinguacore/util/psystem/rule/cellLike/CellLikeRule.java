@@ -64,10 +64,6 @@ class CellLikeRule extends AbstractRule {
 	public int energyTemp = 0;	//JM: temporary energy subtracted from the original energy - for simulating the execution while in SELECTION
 	public int execCount = 0;
 
-	//public int isString = 0;
-
-	//public int energyAdded = 0;
-
 	/**
 	 * Creates a new CellLikeRule instance.
 	 * 
@@ -113,16 +109,12 @@ class CellLikeRule extends AbstractRule {
 	protected boolean executeSafe(ChangeableMembrane membrane,
 			MultiSet<String> environment, long executions) {
 
-		//System.out.println("CellLikeRule :: executeSafe");
-
 		CellLikeMembrane outerClm = (CellLikeMembrane) membrane;
 		
 		/*
 		 * First of all, the multiset in the outer membrane of the left hand
 		 * rule is subtracted from the membrane multiset
 		 */
-		
-
 		boolean executeRightHand = executeRightHand(membrane, environment, executions);
 
 		if(executeRightHand){
@@ -133,36 +125,24 @@ class CellLikeRule extends AbstractRule {
 				getLeftHandRule().getOuterRuleMembrane().getMultiSet(),
 				outerClm.getMultiSet(), executions);
 
-				//System.out.println("CellLikeRule executeSafe : isEvol");
-				//System.out.println("CellLikeRule executeSafe membrane (after) has " + membrane.toString());
 				return true;
 			}
-			else if(exec>0){
-				//System.out.println("CellLikeRule : executeSafe :: executeRightHand=truel exec == " + exec);
+			else if(exec > 0){
 				subtractMultiSet(
 				getLeftHandRule().getOuterRuleMembrane().getMultiSet(),
 				outerClm.getMultiSet(), exec);	
 
-				//System.out.println("CellLikeRule executeSafe membrane (after) has " + membrane.toString());
 				return true;
 			}
-			else{	//JM: Because it will not go to 0, unless it isn't a comm rule -> 0 executions does not go here
+			else	//JM: Because it will not go to 0, unless it isn't a comm rule -> 0 executions does not go here
 				return false;
-			}
 			
-			//return true;
-		}
-		else{	//righthand is not executed, we have to subtract the one
-
 		}
 
 		return false;
 
 	}
 
-	//public boolean executeStringEvolution(){
-
-	//}
 	/**
 	 * @see org.gcn.plinguacore.util.psystem.rule.AbstractRule#countExecutions(org.gcn.plinguacore.util.psystem.membrane.ChangeableMembrane)
 	 */
@@ -180,16 +160,6 @@ class CellLikeRule extends AbstractRule {
 		 * In case is intended to be executed on a skin membrane, it would be no
 		 * possible execution if it doesn't match skin membrane requirements
 		 */
-
-		//System.out.println("CellLikeRule : in countExecutions");
-
-		//System.out.println("CellLikeRule : countExecutions: (at start) for rule " + toString());
-		//System.out.println("CellLikeRule : countExecutions membrane has " + membrane.toString());
-		//System.out.println("CellLikeRule : in countExecutions : membrane label is " + membrane.getLabel() + " tempMembrane energy is " + cellLikeMembrane.getEnergyTemp());
-		//System.out.println("CellLikeRule : in countExecutions : LEFTHANDRULE tempEnergy is " + getLeftHandRule().getOuterRuleMembrane().getEnergyTemp());
-		//System.out.println("CellLikeRule : in countExecutions : RIGHTHANDRULE tempEnergy is " + getRightHandRule().getOuterRuleMembrane().getEnergyTemp());
-
-
 		if (cellLikeMembrane.isSkinMembrane()) {
 			if (!checkSkinMembrane())
 				return 0;
@@ -205,11 +175,9 @@ class CellLikeRule extends AbstractRule {
 			 * have not a parent, it would only be possible in case the membrane
 			 * isn't a skin
 			 */
-			
-			//System.out.println("CellLikeRule : in countExecutions : parent membrane label is " + cellLikeNoSkinMembrane.getParentMembrane().getLabel() + " tempMembrane energy is " + cellLikeNoSkinMembrane.getParentMembrane().getEnergyTemp());
-
+		
 			try{
-				outerMultiSetCount = multiSetCount(getLeftHandRule().getMultiSet(),	//JM: it seems that lefthandrule is the multiset outside the brackets
+				outerMultiSetCount = multiSetCount(getLeftHandRule().getMultiSet(),	//LefthandRule().getMultiSet() is the multiset outside the leftHandRule brackets
 						cellLikeNoSkinMembrane.getParentMembrane().getMultiSet());
 
 
@@ -217,52 +185,29 @@ class CellLikeRule extends AbstractRule {
 				//JM: in the part where the multiset of the parent is important is during send-in, we first need to check if the energy is for the send-in or not HAHAHA
 
 
-				//System.out.println("Parent label = " + cellLikeNoSkinMembrane.getParentMembrane().getLabel()); //+ " energy = " + cellLikeNoSkinMembrane.getParentMembrane().getEnergy());
-
-				//System.out.println("outerMultiSetCount before: " + outerMultiSetCount + " lefthand rule = " + getLeftHandRule().getMultiSet().toString() + " parent membrane = " + cellLikeNoSkinMembrane.getParentMembrane().getMultiSet().toString());
 				//JM: if the energy is not enough, set outerMultiSetCount to 0
 				//JM: like a send-in I guess
-				//we have to account for the antiport though hahahaha - antiport: if there is energy in the righthandrule
 
-				if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getOuterRuleMembrane().getEnergy2()!=0){ //means this is an antiport
-					//System.out.println("CellLikeRule : countExecutions --> inside an antiport");
+				if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getOuterRuleMembrane().getEnergy2()!=0){ //This is an antiport (for send-in)
 
-					if(cellLikeNoSkinMembrane.getParentMembrane().getEnergyTemp() < getLeftHandRule().getOuterRuleMembrane().getEnergy()){	//energy of the parent is the righthandrule
+					if(cellLikeNoSkinMembrane.getParentMembrane().getEnergyTemp() < getLeftHandRule().getOuterRuleMembrane().getEnergy()){	//Energy of the parent is the righthandrule
 						outerMultiSetCount = 0;
-						//isExecuted = false;
-						//System.out.println("Parent energy < RightHand energy");
 					}
 					else{
-						//else this is really an antiport for send-in
-						//System.out.println("ANTIPORT send-in");
-						
 						isAntiport = true;
-						
-						//System.out.println("CellLikeRule : countExecutions --> for antiport");
 						int execCount;
 						execCount = (int)((cellLikeNoSkinMembrane.getParentMembrane().getEnergyTemp())/(getLeftHandRule().getOuterRuleMembrane().getEnergy()));
 						execCount = Math.min((int)outerMultiSetCount,execCount);
 
 						outerMultiSetCount = execCount;						
-
-
-						//cellLikeNoSkinMembrane.setEnergy(cellLikeNoSkinMembrane.getParentMembrane().getEnergy() - getRightHandRule().getOuterRuleMembrane().getEnergy());
-						//System.out.println("antiport : righthandrule " + cellLikeNoSkinMembrane.getEnergy());	
-
 					}
 				}
-				else if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getOuterRuleMembrane().getMultiSet().size()==0){ //means send-in
-					//System.out.println("CellLikeRule : countExecutions --> inside a send-in");
-					//System.out.println("CellLikeRule : countExecutions ; parentEnergy = " + cellLikeNoSkinMembrane.getParentMembrane().getEnergyTemp());
-
+				else if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getOuterRuleMembrane().getMultiSet().size()==0){ //Means send-in
+	
 					if(cellLikeNoSkinMembrane.getParentMembrane().getEnergyTemp() < getLeftHandRule().getOuterRuleMembrane().getEnergy()){
 						outerMultiSetCount = 0;
-						//isExecuted = false;
-						//System.out.println("Parent energy < LeftHand energy");
 					}
 					else{
-						//else this is really a send-in
-						//System.out.println("CellLikeRule : countExecutions --> send-in == true");
 						isSendin = true;
 
 						int execCount;
@@ -270,15 +215,8 @@ class CellLikeRule extends AbstractRule {
 						execCount = Math.min((int)outerMultiSetCount,execCount);
 
 						outerMultiSetCount = execCount;		
-						//System.out.println("CellLikeRule : countExecutions --> for send-in execCount = " + execCount);				
-
-						//energyForOuter = cellLikeNoSkinMembrane.getParentMembrane().getEnergy() - getLeftHandRule().getOuterRuleMembrane().getEnergy();
-						//cellLikeNoSkinMembrane.setEnergy(cellLikeNoSkinMembrane.getParentMembrane().getEnergy() - getLeftHandRule().getOuterRuleMembrane().getEnergy());
-						//System.out.println("send " + cellLikeNoSkinMembrane.getEnergy());
 					}
 				}
-				//else if(getRightHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getMultiSet().size()!=0) //isEvol
-				//System.out.println("outerMultiSetCount after: = " + outerMultiSetCount);
 				
 			}catch(RuntimeException ex)
 			{
@@ -296,64 +234,34 @@ class CellLikeRule extends AbstractRule {
 
 		//JM: if the energy is not enough, set innerMultiSetCount to 0
 		//JM: like a send-out I guess
-
-		//System.out.println("membrane energy = " + cellLikeMembrane.getEnergy());
-
-		//System.out.println("innerMultiSetCount before: = " + innerMultiSetCount + " lefthand rule outermem = " + getLeftHandRule().getOuterRuleMembrane().getMultiSet().toString() + " membrane = " + cellLikeMembrane.getMultiSet().toString());
-		
-		if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getOuterRuleMembrane().getEnergy2()!=0){ //means this is an antiport
+	
+		if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getOuterRuleMembrane().getEnergy2()!=0){ //Means this is an antiport (for send-out)
 			if(cellLikeMembrane.getEnergyTemp() < getLeftHandRule().getOuterRuleMembrane().getEnergy2()){
 				innerMultiSetCount = 0;
-				//isExecuted = false;
-				//System.out.println("membrane energy < lefthand energy");
 			}
 			else{
-				//else this is an antiport for send-out
-
-				//System.out.println("CellLikeRule : countExecutions --> for antiport");
-				isAntiport = true;
-				
+				isAntiport = true;			
 				int execCount;
 				execCount = (int)((cellLikeMembrane.getEnergyTemp())/(getLeftHandRule().getOuterRuleMembrane().getEnergy2()));
 				execCount = Math.min((int)innerMultiSetCount,execCount);
 
 				innerMultiSetCount = execCount;
-
-				//energyForInner = cellLikeMembrane.getEnergy() - getLeftHandRule().getOuterRuleMembrane().getEnergy();
-				//cellLikeMembrane.setEnergy(cellLikeMembrane.getEnergy() - getLeftHandRule().getOuterRuleMembrane().getEnergy());
-				//System.out.println("antiport : leftthandrule " + cellLikeMembrane.getEnergy());
 			}
 		}
-		else if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getMultiSet().size()==0){	//means this is a send-out
+		else if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getMultiSet().size()==0){	//Means this is a send-out
 			if(cellLikeMembrane.getEnergyTemp() < getLeftHandRule().getOuterRuleMembrane().getEnergy()){
 				innerMultiSetCount = 0;
-				//isExecuted = false;
-				//System.out.println("membrane energy < lefthand energy");
 			}
 			else{
-				//else this is really a send-out
 				isSendout = true;
-
-
-				//System.out.println("CellLikeRule : countExecutions --> for send-out");
 				int execCount;
 				execCount = (int)((cellLikeMembrane.getEnergyTemp())/(getLeftHandRule().getOuterRuleMembrane().getEnergy()));
 				execCount = Math.min((int)innerMultiSetCount,execCount);
 
 				innerMultiSetCount = execCount;
 
-				//energyForInner = cellLikeMembrane.getEnergy() - getLeftHandRule().getOuterRuleMembrane().getEnergy();
-				//cellLikeMembrane.setEnergy(cellLikeMembrane.getEnergy() - getLeftHandRule().getOuterRuleMembrane().getEnergy());
-				//System.out.println("send-out " + cellLikeMembrane.getEnergy());
-
 			}
 		}
-		else{
-			//System.out.println("IT SHOULD COME HERE");
-		}
-		//System.out.println("innerMultiSetCount after: = " + innerMultiSetCount);
-		
-		
 
 		/*
 		 * c. The number of matching membranes among the membrane children and
@@ -362,7 +270,7 @@ class CellLikeRule extends AbstractRule {
 		if (!getLeftHandRule().getOuterRuleMembrane().getInnerRuleMembranes()
 				.isEmpty())
 			innerMembranesCount = countInnerMembranes(cellLikeMembrane);
-			//System.out.println("innerMembranesCount " + innerMembranesCount);
+
 		/* Once we have all numbers to consider, we get the minimum */
 			
 		long count= Math.min(innerMembranesCount, Math.min(innerMultiSetCount,
@@ -372,7 +280,6 @@ class CellLikeRule extends AbstractRule {
 	
 
 	public void executeDummy(ChangeableMembrane membrane, int count) {
-		//System.out.println("CellLikeRule : in executeDummy");
 		CellLikeMembrane cellLikeMembrane = (CellLikeMembrane) membrane;
 		long outerMultiSetCount = Long.MAX_VALUE;
 		long innerMultiSetCount = Long.MAX_VALUE;
@@ -385,21 +292,11 @@ class CellLikeRule extends AbstractRule {
 		if(isAntiport){
 			membrane.setEnergyTemp(membrane.getEnergyTemp() - (int)((count)*(getLeftHandRule().getOuterRuleMembrane().getEnergy())));
 			((CellLikeNoSkinMembrane)membrane).getParentMembrane().setEnergyTemp(((CellLikeNoSkinMembrane)membrane).getParentMembrane().getEnergyTemp() - (int)((count)*(getRightHandRule().getOuterRuleMembrane().getEnergy())));
-			//System.out.println("CellLikeRule : executeDummy :: " + " antiport");
 		}
-		else if(isSendin){
+		else if(isSendin)
 			((CellLikeNoSkinMembrane)membrane).getParentMembrane().setEnergyTemp(((CellLikeNoSkinMembrane)membrane).getParentMembrane().getEnergyTemp() - (int)((count)*(getLeftHandRule().getOuterRuleMembrane().getEnergy())));
-			//System.out.println("CellLikeRule : executeDummy :: " + " send in");
-			//System.out.println("CellLikeRule : executeDummy :: " + " send in --> tempEnergy in left rule = " + getLeftHandRule().getOuterRuleMembrane().getEnergy());
-			//System.out.println("CellLikeRule : executeDummy :: " + " send in --> tempEnergy in parent = " + ((CellLikeNoSkinMembrane)membrane).getParentMembrane().getEnergyTemp());
-		}
-		else if(isSendout){
+		else if(isSendout)
 			membrane.setEnergyTemp(membrane.getEnergyTemp() - (int)((count)*(getLeftHandRule().getOuterRuleMembrane().getEnergy())));
-			//System.out.println("CellLikeRule : executeDummy :: " + " send out");
-		}
-		else{
-			//System.out.println("CellLikeRule : executeDummy :: " + " else part");
-		}
 
 	}
 
@@ -412,32 +309,6 @@ class CellLikeRule extends AbstractRule {
 		executionsDone = num;
 
 	}
-
-
-	/*public boolean isAntiport(){
-		return isAntiport;
-	}
-
-	public boolean isSendin(){
-		return isSendin;
-	}
-
-	public boolean isSendout(){
-		return isSendout;
-	}
-
-	public long getEnergyForOuter(){
-		return energyForOuter;
-	}
-
-	public long getEnergyForInner(){
-		return energyForInner;
-	}
-
-	public int getMin(){
-		return MinMultiset;
-	}*/
-	
 
 	private long countInnerMembranes(CellLikeMembrane cellLikeMembrane) {
 		/*
@@ -570,93 +441,56 @@ class CellLikeRule extends AbstractRule {
 	private boolean updateOuterMultiSet(CellLikeNoSkinMembrane clnsm,
 			long executions) {
 
-		boolean ret = true;	
-		//System.out.println("CellLikeRule:: updateOuterMultiSet");
-		//int execCount = 0;
-			//System.out.println("LABEL = " + clnsm.getLabel() + " EXECUTIONS = " + executions);		
+		boolean ret = true;		
 			
-		if(getLeftHandRule().getOuterRuleMembrane().getEnergy()==0 && getRightHandRule().getOuterRuleMembrane().getEnergy()>=0){	//JM: I see; evol could be zero both in left and right 
+		if(getLeftHandRule().getOuterRuleMembrane().getEnergy()==0 && getRightHandRule().getOuterRuleMembrane().getEnergy()>=0){	//Evol could be zero both in left and right 
 			//evo
 			//JM: In case of evolution rule, put it first in a variable
 			isEvol = true;
 			energyAdded = ((int)executions*getRightHandRule().getOuterRuleMembrane().getEnergy());
-			
-			//clnsm.setEnergy(clnsm.getEnergy()+ ((int)executions*getRightHandRule().getOuterRuleMembrane().getEnergy()));
-
-			//System.out.println("CellLikeRule updateOuterMultiSet :: Evolution rule : Label: " + clnsm.getLabel() + " Energy after: " + clnsm.getEnergy());
-	
 			subtractAndAddMultiSet(clnsm,executions);
 		
 		}
 		else if(getLeftHandRule().getOuterRuleMembrane().getEnergy()>0 && getLeftHandRule().getOuterRuleMembrane().getEnergy2()==0 && getRightHandRule().getOuterRuleMembrane().getEnergy()==0){
 			int energy=0;
-			//int execCount = 0;
-				//JM: This one count the number of executions that could be executed given the number of energy
-
-			//send-in
-			//System.out.println("CellLikeRule updateOuterMultiSet :: energy needed to communicate : " + getLeftHandRule().getOuterRuleMembrane().getEnergy());
+		
+			//Send-in
 			if(getLeftHandRule().getOuterRuleMembrane().getMultiSet().size()==0){
-				//System.out.println("CellLikeRule updateOuterMultiSet :: Send-in rule : Label: " + clnsm.getLabel() + " Current Parent Energy before exec: " + clnsm.getParentMembrane().getEnergy());
 					
 					execCount = (int)((clnsm.getParentMembrane().getEnergy())/(getLeftHandRule().getOuterRuleMembrane().getEnergy()));
 					execCount = Math.min((int)executions,execCount);
-
-					//System.out.println("CellLikeRule execCount = " + execCount);
 
 					energy=clnsm.getParentMembrane().getEnergy() - (execCount*getLeftHandRule().getOuterRuleMembrane().getEnergy());
 					setExecutionsDone(execCount);
 
 					if(energy>=0 && execCount>0){
-						//System.out.println("CellLikeRule : inside updateOuterMultiSet send-in:");
 						clnsm.getParentMembrane().setEnergy(energy);
 						
-						//subtractAndAddMultiSet(clnsm.getParentMembrane(),execCount);
 						subtractAndAddMultiSet(clnsm,execCount);
 					}
-					else{
-						//System.out.println("CellLikeRule : updateOuterMultiSet send-in: energy not set");
-						//System.out.println("CellLikeRule send-in : " + clnsm.toString());
+					else
 						ret = false;
-					}
-
-				//System.out.println("CellLikeRule updateOuterMultiSet :: Send-in rule : Label: " + clnsm.getLabel() + " Energy after: " + clnsm.getEnergy());		
-				//System.out.println("CellLikeRule updateOuterMultiSet :: Send-in rule : membrane = " + clnsm.toString());
 			}
 
-			//send-out
+			//Send-out
 			else{
-					//System.out.println("CellLikeRule updateOuterMultiSet :: Send-out rule : Label: " + clnsm.getLabel() + " Energy before: " + clnsm.getEnergy());
-					
 					execCount = (int)((clnsm.getEnergy())/(getLeftHandRule().getOuterRuleMembrane().getEnergy()));
 					execCount = Math.min((int)executions,execCount);
-
-					//System.out.println("CellLikeRule execCount = " + execCount);
 
 					energy=clnsm.getEnergy()- (execCount*getLeftHandRule().getOuterRuleMembrane().getEnergy());
 					setExecutionsDone(execCount);
 
 					if(energy>=0 && execCount>0){
-						//System.out.println("CellLikeRule : inside updateOuterMultiSet send-out");
 						clnsm.setEnergy(energy);
 						subtractAndAddMultiSet(clnsm,execCount);
 
 					}
-					else{
-						//System.out.println("CellLikeRule : updateOuterMultiSet send-out: energy not set");
+					else
 						ret = false;
-					}
-
-					//System.out.println("CellLikeRule updateOuterMultiSet :: Send-out rule : Label: " + clnsm.getLabel() + " Energy after: " + clnsm.getEnergy());
 			}
 		}
 		else if(getLeftHandRule().getOuterRuleMembrane().getEnergy()>0 && getRightHandRule().getOuterRuleMembrane().getEnergy()==0 && getLeftHandRule().getOuterRuleMembrane().getEnergy2()>0){
-			//anti
-			//System.out.println("CellLikeRule updateOuterMultiSet :: Antiport: Label = " + clnsm.getLabel() + " energy = " + clnsm.getEnergy());
-			//System.out.println("Antiport: Label = " + clnsm.getParentMembrane().getLabel() + " energy = " + clnsm.getParentMembrane().getEnergy());
-			//System.out.println("LeftHandRule = " + getLeftHandRule().getOuterRuleMembrane().getEnergy());
-			//System.out.println("LeftHandRule2 = " + getLeftHandRule().getOuterRuleMembrane().getEnergy2());
-			//System.out.println("Membrane energy = " + clnsm.getEnergy());
-			//System.out.println("Parent energy = " + clnsm.getParentMembrane().getEnergy());
+			//Antiport
 
 			int execCountIn = 0, execCountOut = 0;	//JM: the number of actual executions implemented, due to energy problems
 			 
@@ -664,42 +498,19 @@ class CellLikeRule extends AbstractRule {
 			execCountOut = (int)((clnsm.getEnergy())/(getLeftHandRule().getOuterRuleMembrane().getEnergy2()));
 			execCount = Math.min(Math.min(execCountIn,execCountOut),(int)executions);
 
-			//System.out.println("CellLikeRule execCount = " + execCount);
-
-
 			int energyIN=clnsm.getParentMembrane().getEnergy()-(execCount*getLeftHandRule().getOuterRuleMembrane().getEnergy());
 			int energyOUT=clnsm.getEnergy()- (execCount*getLeftHandRule().getOuterRuleMembrane().getEnergy2());
 			
 			if(energyIN>=0 && energyOUT>=0 && execCount>0){
-				//System.out.println("CellLikeRule : updateOuterMultiSet : inside antiport VALID");
 
 				subtractAndAddMultiSet(clnsm,execCount);
 				clnsm.setEnergy(energyOUT);
 				clnsm.getParentMembrane().setEnergy(energyIN);
 				setExecutionsDone(execCount);
 			}
-			else{
+			else
 			 	ret = false;
-			}
-
-
-			// System.out.println("energyIn = " + energyIN + " energyOUT = " + energyOUT);
-			// System.out.println("Antiport rule : Label: " + clnsm.getLabel() + " Energy: " + clnsm.getEnergy());
-			 //System.out.println("Parent membrane : Label =  " + clnsm.getParentMembrane().getLabel() + " Energy = " + clnsm.getParentMembrane().getEnergy());
-
 		}
-		else{
-			//System.out.println("CellLikeRule updateOuterMultiSet :: No energy detected");
-			//no energy, if ecpe? throw errow, else
-			//subtractAndAddMultiSet(clnsm,executions);
-		}
-	//subtractAndAddMultiSet(clnsm,executions);
-		//System.out.println("<<<<<<PARENT "+ clnsm.getParentMembrane().getEnergy());
-		//System.out.println("<<<<<<CURRENT "+ clnsm.getEnergy());
-		
-		//System.out.println("CellLikeRule updateOuterMultiSet (at the end) :: membrane = " + clnsm.toString());
-		//System.out.println("CellLikeRule execCount = " + execCount);
-		//System.out.println("CellLikeRule : updateOuterMultiSet :: return = " + ret);
 		return ret;
 	}
 
@@ -801,8 +612,6 @@ class CellLikeRule extends AbstractRule {
 	
 	protected boolean executeRightHand(ChangeableMembrane membrane, MultiSet<String> environment, long executions
 			) {
-		//System.out.println("CellLikeRule :: executeRightHand");
-
 		boolean ret = true;
 
 		CellLikeMembrane outerClm = (CellLikeMembrane) membrane;
@@ -812,8 +621,6 @@ class CellLikeRule extends AbstractRule {
 		.getInnerRuleMembranes();
 		CellLikeMembrane secondOclm;
 
-
-		//int execCount = 0;
 		/*
 		 * In case the membrane is not a skin membrane, we should update the
 		 * outer multiset
@@ -827,7 +634,7 @@ class CellLikeRule extends AbstractRule {
 			 * environment
 			 */
 			if(getLeftHandRule().getOuterRuleMembrane().getEnergy()==0 && getRightHandRule().getOuterRuleMembrane().getEnergy()>=0){
-				//evo
+				//Evolution
 				isEvol = true;
 				energyAdded = ((int)executions*getRightHandRule().getOuterRuleMembrane().getEnergy());
 
@@ -843,26 +650,18 @@ class CellLikeRule extends AbstractRule {
 					execCount = Math.min((int)executions,execCount);
 
 					setExecutionsDone(execCount);
-					//System.out.println("CellLikeRule execCount in rightHandrule = " + execCount);
  
 					energy=outerClm.getEnergy() - (execCount)*getLeftHandRule().getOuterRuleMembrane().getEnergy();
-					//System.out.println("CellLikeRule : energy after " + energy);
 					if(energy>=0){		//JM: cannot be executed
 						
 						outerClm.setEnergy(energy);
-						//subtractAndAddMultiSet((CellLikeNoSkinMembrane)clnsm.getParentMembrane(),executions);
-								
 						addMultiSet(getRightHandRule().getMultiSet(), environment,
 								execCount);
 					}
-					else{
+					else
 						ret = false;
-					}
 				}
 			}
-		
-			//addMultiSet(getRightHandRule().getMultiSet(), environment,
-			//		executions);
 		}
 		
 		/*
@@ -877,31 +676,25 @@ class CellLikeRule extends AbstractRule {
 		/* Later, all children membranes should be updated */
 		updateAllInnerMembranes(correspondency, lirm, executions);
 
-		//System.out.println("CellLikeRule : executeRightHand (at the end 2) :: " + membrane.toString());
 		/*
 		 * All inner membranes created as a result of the rule execution are
 		 * created, as well
 		 */
 		addNewMembranes(outerClm, executions);
-		//System.out.println("CellLikeRule : executeRightHand (at the end 3) :: " + membrane.toString());
 		/*
 		 * Finally, the outer membrane is updated according to the outer rule
 		 * membrane
 		 */
-
-		//System.out.println("CellLikeRule : executeRightHand execCount = " + execCount);
 
 		if(execCount > 0 || isEvol){
 			updateMembrane(outerClm, getRightHandRule().getOuterRuleMembrane(),
 					executions);
 		}
 
-		//System.out.println("CellLikeRule : executeRightHand (at the end 4) :: " + membrane.toString());
 		/* If the rule dissolves the membrane, it should be performed */
 		if (dissolves())
 			outerClm.dissolve();
 
-		//System.out.println("CellLikeRule : executeRightHand (at the end end) :: " + membrane.toString());
 		return ret;
 	}
 
