@@ -100,7 +100,29 @@ class CellLikeRule extends AbstractRule {
 
 		CellLikeMembrane outerClm = (CellLikeMembrane) membrane;
 		
+		/*if(outerClm.isSkinMembrane){
+			if(isEvol){
+				replaceString thingy
+			}
+			else if(isAntiport){
+				
+			}
+			else if(isSend-out)
 
+
+		else{
+			if(isEvol)
+
+			else if(send-out)
+
+			else if(send-in)
+
+			else if (antiport)
+
+		}	
+
+		*/
+	
 		return true;
 	}
 
@@ -278,6 +300,34 @@ class CellLikeRule extends AbstractRule {
 		return count;
 	}
 	
+	public boolean isEvolution(){
+		if(getLeftHandRule().getOuterRuleMembrane().getEnergy()==0 && getRightHandRule().getOuterRuleMembrane().getEnergy()>=0)
+			return true;
+
+		return false;
+	}
+
+	public boolean isSendIn(){
+		if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getOuterRuleMembrane().getMultiSet().size()==0)
+			return true;
+
+		return false;
+	}
+
+	public boolean isSendOut(){
+		if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getMultiSet().size()==0)
+			return true;
+
+		return false;
+	}
+
+	public boolean isAntiport(){
+		if(getLeftHandRule().getOuterRuleMembrane().getEnergy()!=0 && getLeftHandRule().getOuterRuleMembrane().getEnergy2()!=0)
+			return true;
+
+		return false;
+	}
+
 
 	public void executeDummy(ChangeableMembrane membrane, int count) {
 		CellLikeMembrane cellLikeMembrane = (CellLikeMembrane) membrane;
