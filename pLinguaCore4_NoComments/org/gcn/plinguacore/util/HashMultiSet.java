@@ -140,7 +140,7 @@ public class HashMultiSet<E> implements MultiSet<E> {
 	* replace = multiset in membrane that has the find object - in this case, this one owns the hashMultiSet
 	* replaceWith = is the rightHandRule multiset
 	*/
-	protected boolean replaceString(Object find, 
+	public boolean replaceString(Object find, 
 		Collection<?> replaceWith, long executions){
 
 		/*for(int i=0; i<executions; i++){
@@ -176,16 +176,16 @@ public class HashMultiSet<E> implements MultiSet<E> {
 
 	}
 
-	protected MultiSet shuffle(){
+	/*protected String[] shuffle(){
 
 
-	}
+	}*/
 
-	protected Multiset clone(){
+	/*protected HashMultiSet clone(){
 		/*
 			To clone: addAll method of multiset :)
 		*/
-	}
+	//}
 
 	/*
 	*	

@@ -150,6 +150,12 @@ public class InmutableMultiSet<E> implements MultiSet<E> {
 		return multiset.toArray(arg0);
 	}
 
+	/*For the sake of using strings*/
+	public boolean replaceString(Object find, 
+		Collection<?> replaceWith, long executions){
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return multiset.toString();
