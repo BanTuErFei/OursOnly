@@ -137,13 +137,13 @@ public class HashMultiSet<E> implements MultiSet<E> {
 		
 	/*
 	* find = is the leftHandRule multiset
-	* replace = multiset in membrane that has the find object
+	* replace = multiset in membrane that has the find object - in this case, this one owns the hashMultiSet
 	* replaceWith = is the rightHandRule multiset
 	*/
-	protected boolean replaceString(Collection<?> replace, Object find, 
+	protected boolean replaceString(Object find, 
 		Collection<?> replaceWith, long executions){
 
-		for(int i=0; i<executions; i++){
+		/*for(int i=0; i<executions; i++){
 			
 			for(int j=0; j<replaceWith.size(); j++){
 				//object = replace.shuffle
@@ -151,10 +151,40 @@ public class HashMultiSet<E> implements MultiSet<E> {
 				//should have another inner for loop
 			}
 
-		}
+		}*/
+
+		/*
+			Method	1. clone original
+					2. Empty original
+					4. Array the clone
+					3. Shuffle clone
+					4. Subtract from clone the first and add to original
+					5. Add all the remaining elements of clone to original
+
+			Method	1. Shuffle returns "sorted" collection
+					2. Replace string here and proceed
+
+			Method Shuffling 1. toArray() of clone
+							 2. Shuffle the index
+							 3. counter = n
+							 3. Swap the largest with the shuffled index
+							 4. counter = counter--
+							 5. check if executions = done
+		*/
 
 		return true;
 
+	}
+
+	protected MultiSet shuffle(){
+
+
+	}
+
+	protected Multiset clone(){
+		/*
+			To clone: addAll method of multiset :)
+		*/
 	}
 
 	/*

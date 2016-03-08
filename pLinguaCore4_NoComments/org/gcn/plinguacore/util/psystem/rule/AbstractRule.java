@@ -431,6 +431,12 @@ public abstract class AbstractRule implements Serializable,IRule {
 
 	}
 	
+	protected final static void replaceMultiSet(MultiSet<String> membraneMultiSet, String find, 
+			MultiSet<String> ruleMultiSet, long executions){
+		membraneMultiSet.replaceString(find, ruleMultiSet, executions);
+	}
+
+
 	protected final boolean checkLabel(ChangeableMembrane membrane)
 	{
 		return membrane.getLabel().equals(getLeftHandRule().getOuterRuleMembrane().getLabel());

@@ -100,12 +100,17 @@ class CellLikeRule extends AbstractRule {
 
 		CellLikeMembrane outerClm = (CellLikeMembrane) membrane;
 		
-		/*if(outerClm.isSkinMembrane){
-			if(isEvol){
-				replaceString thingy
-			}
-			else if(isAntiport){
-				
+		/*
+		evol: all membranes
+		send-in: !skinMembranes
+		send-out: all membranes
+		antiport: !skinMembranes
+
+		if(outerClm.isSkinMembrane()){
+			CellLikeMembrane outerClm = (CellLikeMembrane) membrane;			
+
+			if(isEvol()){
+				replaceMultiSet(); 
 			}
 			else if(isSend-out)
 
