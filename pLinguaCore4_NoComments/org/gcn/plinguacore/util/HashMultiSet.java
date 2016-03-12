@@ -31,6 +31,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * A multiset that uses HashMap
@@ -141,8 +142,40 @@ public class HashMultiSet<E> implements MultiSet<E> {
 	* replaceWith = is the rightHandRule multiset
 	*/
 	public boolean replaceString(Object find, 
-		Collection<?> replaceWith, long executions){
+		Collection<? extends E> replaceWith, long executions){
+		/*System.out.println("In replaceString, object:" + find.toString());
+		System.out.println("In replaceString, replaceWith:" + replaceWith.toArray().toString());
+		int exec = (int)executions;
+		Object duplicate = new Object();
+		HashMultiSet<String> duplicateHash = new HashMultiSet<String>();
+		String findString = (String)find;
 
+		duplicate = ((LinkedHashMap)entrySet.map).clone();
+		duplicateHash = (HashMultiSet)duplicate;
+		entrySet.map.clear();
+		
+		Object dup[] = duplicateHash.toArray();
+		String[] dupString = (String[])dup;
+
+		int size = duplicateHash.size();
+		int ctr = size, index;
+
+		for(int i=0; i<size; i++){
+			System.out.println(dupString[i]);
+		}
+
+		/*while(exec > 0){
+			Random rnd= new Random();
+			index = rnd.nextInt(size);
+		
+			if(((HashMultiSet)dup)[index]){
+				//1. Change substring
+				//2. Append to entrySet
+				//3. Remove 
+				entrySet.map().put(dup[index],)
+
+			}
+		}
 		/*for(int i=0; i<executions; i++){
 			
 			for(int j=0; j<replaceWith.size(); j++){
@@ -161,8 +194,6 @@ public class HashMultiSet<E> implements MultiSet<E> {
 					4. Subtract from clone the first and add to original
 					5. Add all the remaining elements of clone to original
 
-			Method	1. Shuffle returns "sorted" collection
-					2. Replace string here and proceed
 
 			Method Shuffling 1. toArray() of clone
 							 2. Shuffle the index
@@ -175,6 +206,8 @@ public class HashMultiSet<E> implements MultiSet<E> {
 		return true;
 
 	}
+
+
 
 	/*protected String[] shuffle(){
 

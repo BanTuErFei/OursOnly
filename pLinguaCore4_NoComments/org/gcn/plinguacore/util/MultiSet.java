@@ -98,7 +98,7 @@ public interface MultiSet<E> extends Collection<E>, Serializable {
 	public boolean subtraction(Collection<?> objects, long multiplicity);
 
 	public boolean replaceString(Object find, 
-		Collection<?> replaceWith, long executions);
+		Collection<? extends E> replaceWith, long executions);
 
 	/**
 	 * Get the set of objects without repetitions Changes in this set will

@@ -151,8 +151,9 @@ public class InmutableMultiSet<E> implements MultiSet<E> {
 	}
 
 	/*For the sake of using strings*/
+	@Override
 	public boolean replaceString(Object find, 
-		Collection<?> replaceWith, long executions){
+		Collection<? extends E> replaceWith, long executions){
 		return false;
 	}
 
@@ -171,5 +172,6 @@ public class InmutableMultiSet<E> implements MultiSet<E> {
 	public int hashCode() {
 		return multiset.hashCode();
 	}
+
 
 }

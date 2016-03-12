@@ -100,6 +100,8 @@ class CellLikeRule extends AbstractRule {
 
 		CellLikeMembrane outerClm = (CellLikeMembrane) membrane;
 		
+		System.out.println("CellLikeRule :: executeSafeString");
+
 		/*
 		evol: all membranes
 		send-in: !skinMembranes
@@ -138,6 +140,8 @@ class CellLikeRule extends AbstractRule {
 
 		CellLikeMembrane outerClm = (CellLikeMembrane) membrane;
 		
+		System.out.println("CellLikeRule :: executeSafe");
+
 		/*
 		 * First of all, the multiset in the outer membrane of the left hand
 		 * rule is subtracted from the membrane multiset
@@ -201,7 +205,7 @@ class CellLikeRule extends AbstractRule {
 			 * and the outer multiset on the left hand rule. As skin membranes
 			 * have not a parent, it would only be possible in case the membrane
 			 * isn't a skin
-			 */
+			 */				
 		
 			try{
 				outerMultiSetCount = multiSetCount(getLeftHandRule().getMultiSet(),	//LefthandRule().getMultiSet() is the multiset outside the leftHandRule brackets
@@ -302,6 +306,8 @@ class CellLikeRule extends AbstractRule {
 			
 		long count= Math.min(innerMembranesCount, Math.min(innerMultiSetCount,
 				outerMultiSetCount));
+		
+		System.out.println("CellLikeRule :: countExecutions :: " + count);
 		return count;
 	}
 	
@@ -335,6 +341,7 @@ class CellLikeRule extends AbstractRule {
 
 
 	public void executeDummy(ChangeableMembrane membrane, int count) {
+
 		CellLikeMembrane cellLikeMembrane = (CellLikeMembrane) membrane;
 		long outerMultiSetCount = Long.MAX_VALUE;
 		long innerMultiSetCount = Long.MAX_VALUE;
@@ -343,6 +350,7 @@ class CellLikeRule extends AbstractRule {
 		long outerMembraneEnergy = 0;
 		long innerMembraneEnergy = 0;
 
+		//System.out.println("CellLikeRule :: executeDummy");
 
 		if(isAntiport){
 			membrane.setEnergyTemp(membrane.getEnergyTemp() - (int)((count)*(getLeftHandRule().getOuterRuleMembrane().getEnergy())));

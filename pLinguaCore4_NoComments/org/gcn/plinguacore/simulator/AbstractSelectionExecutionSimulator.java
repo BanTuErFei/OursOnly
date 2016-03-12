@@ -1,4 +1,4 @@
-/* 
+ /* 
  * pLinguaCore: A JAVA library for Membrane Computing
  *              http://www.p-lingua.org
  *
@@ -445,10 +445,12 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 		microStepSelectRules();
 		
+		
 		if (hasSelectedRules()) {
-			microStepExecuteRules();	//JM: see?? execution goes first before selection!!!
+			System.out.println("AbstractSelectionExecutionSimulator :: hasSelectedRules");
+			microStepExecuteRules();
 			//currentConfig = (Configuration)currentConfig.clone();
-			
+			System.out.println("AbstractSelectionExecutionSimulator :: specificStep :: after microStepExecuteRules");
 			currentConfig.setNumber(currentConfig.getNumber()+1);
 		}
 
@@ -467,8 +469,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			}
 		}
 
-
-
 		return (hasSelectedRules() && !sameConfig);
 	}
 	
@@ -480,21 +480,20 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	protected void executeRule(IRule r,ChangeableMembrane m,MultiSet<String>environment,long count)
 	{
 		
-		//System.out.println("AbstractSelectionExecutionSimulator: executeRule " + r.toString() + " with count " + count);
+		System.out.println("AbstractSelectionExecutionSimulator :: executeRule " + r.toString() + " with count " + count);
 		//System.out.println("executeRule before: :: label = " + m.getLabel() + " energy = " + m.getEnergy());
 		boolean isExecuted = r.execute(m,environment,count);
 		//boolean isExecuted = r.isExecuted();
 
-		//System.out.println("AbstractSelectionExecutionSim IsExecuted = " + isExecuted);
+		System.out.println("AbstractSelectionExecutionSim IsExecuted = " + isExecuted);
 		//System.out.println("m.getId() " + m.getId());
 		//System.out.println("Rule " + r.toString());
 
 
 		if(isExecuted == false){
-			//System.out.println("AbstractSelectionExecutionSimulator:: " + "inside isExecuted");
+			//System.out.println("AbstractSelectionExecutionSimulator :: isExecuted = false");
 			//JM: remove the rule from the selectedRules
 			
-
 			//System.out.println("AbstractSelectionExecutionSimulator : executeRule :: contains m's ID = " + selectedRules.containsKey(m.getId()));
 			
 			Pair<ChangeableMembrane, MultiSet<Object>> tempPair = new Pair<ChangeableMembrane, MultiSet<Object>>(m,
@@ -523,7 +522,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			if(selectedRules.containsKey(m.getId())){	//JM: Of course it contains it
 				selectedRules.put(m.getId(),tempPair);
 
-				System.out.println("putSelectedRules (after executionsDone) = " + tempPair.toString());
+				//System.out.println("AbstractSelectionExecutionSimulator :: putSelectedRules (after executionsDone) = " + tempPair.toString());
 			}
 			else{
 				Pair<ChangeableMembrane, MultiSet<Object>> tempPair2 = new Pair<ChangeableMembrane, MultiSet<Object>>(m,
@@ -533,6 +532,8 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 				
 				selectedRules.put(m.getId(),tempPair2);
 			}
+
+			//System.out.println("tempMulti end of if");
 			
 		}
 		else{
@@ -557,12 +558,12 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 		}
 
 
-		//System.out.println("executeRule after: :: label = " + m.getLabel() + " energy = " + m.getEnergy());
+		//System.out.println("executeRule after:: end of method");
 	}
 	
 	protected void microStepExecuteRules() {
 
-		//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules");	//JM: it goes through here per step	
+		System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules");	//JM: it goes through here per step	
 
 		//JM: to set the prevEnergy
 		Iterator<Pair<ChangeableMembrane, MultiSet<Object>>> itTemp = selectedRules
@@ -602,9 +603,14 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			Iterator<Object> it1 = ms.entrySet().iterator();	//JM: iterator for multiset
 
 			while (it1.hasNext()) {		//JM: while there is still iterator for multiset; I think it goes through here per rule
-				//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules :: inside a rule");
+				System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules :: inside a rule");
+				System.out.println(ms.toString());
 				//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules : before rule execution energy generated : " + energyEvol);
-				Object o = it1.next();	//JM: multiset has object Rules
+				
+				try{
+					Object o = it1.next();	//JM: multiset has object Rules
+				
+				System.out.println("AbstractSelectionExecutionSimulator : microStepExecutionRules :: has it1.next");
 				if (o instanceof IRule)
 				{
 					IRule r = (IRule)o;
@@ -619,7 +625,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 						//System.out.println("REGLA: "+r.toString());
 					}
 					else
-						//System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: else part");
+						System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: else part");
 						executeRule(r,m,currentConfig.getEnvironment(),ms.count(r));	//JM: executeRule
 						
 						//JM: I added this
@@ -628,6 +634,10 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 							//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules : after rule "  + r.toString() + " execution energy generated : " + energyEvol);
 						}		
+				}
+				}
+				catch(Exception e){
+					e.printStackTrace();
 				}
 
 				
@@ -638,7 +648,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			Iterator<IRule>it2= ms1.entrySet().iterator();	//JM: this is for the noevolution
 			while (it2.hasNext()) {
 				IRule r = it2.next();
-				//System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: noevolution");
+				System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: noevolution");
 				executeRule(r,m,currentConfig.getEnvironment(),ms1.count(r));
 
 				if(r instanceof AbstractRule){
@@ -652,7 +662,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			
 			while (it2.hasNext()) {	//JM: this is for dissolves
 				IRule r = it2.next();
-				//System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: dissolution");
+				System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: dissolution");
 				executeRule(r,m,currentConfig.getEnvironment(),ms2.count(r));
 
 				if(r instanceof AbstractRule){
@@ -668,13 +678,17 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			m.setEnergy(m.getEnergy() + energyEvol);
 		
 		}
+
+		
+		System.out.println("AbstractSelectionExecutionSimulator :: microStepExecuteRules :: fin");
+
 		
 	}
 	
 
 	public void selectRule(Object r, ChangeableMembrane m, long count) {
 
-		//System.out.println("AbstractSelectionExecutionSimulator: selectRule");
+		System.out.println("AbstractSelectionExecutionSimulator :: selectRule");
 		//System.out.println("AbstractSelectionExecutionSimulator SelectRule :: label = " + m.getLabel() + " energy in the membrane = " + m.getEnergy());
 		//System.out.println("AbstractSelectionExecutionSimulator : selectRule " + r.toString() + " count = " + count);
 		

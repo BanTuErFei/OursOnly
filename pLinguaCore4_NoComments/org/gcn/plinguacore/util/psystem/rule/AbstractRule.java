@@ -237,7 +237,7 @@ public abstract class AbstractRule implements Serializable,IRule {
 	public boolean execute(ChangeableMembrane membrane,
 			MultiSet<String> environment) {
 
-		System.out.println("AbstractRule : execute");
+		System.out.println("AbstractRule :: execute");
 
 		return execute(membrane, environment, countExecutions(membrane));
 	}
@@ -270,8 +270,13 @@ public abstract class AbstractRule implements Serializable,IRule {
 	@Override
 	public boolean execute(ChangeableMembrane membrane,
 			MultiSet<String> environment, long executions) {
+		
+		//System.out.println("AbstractRule :: execute");	//JM: Aha, it seems something was going on here... that's why it isn't going anywhere in the executeSafe
+		//System.out.println("AbstractRule :: executions = " + executions);
+		//System.out.println("AbstractRule :: executions membrane = " + countExecutions(membrane));
+		
 		if (executions > countExecutions(membrane)) {
-			//System.out.println("AbstractRule : execute = false");	//JM: Aha, it seems something was going on here... that's why it isn't going anywhere in the executeSafe
+			//System.out.println("AbstractRule :: executions > countExecutions");
 			return false;
 		}
 		/*
