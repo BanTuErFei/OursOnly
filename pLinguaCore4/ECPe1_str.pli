@@ -1,0 +1,15 @@
+@model<evolution_communication>
+def SAMPLE() {
+@mu = [ [ [ [ ]'4]'3]'2]'1;
+
+@ms(1) = <bd.ab>*2;
+
+[<ab> --> <cd>, <ab>]'1;
+[<ab> --> <fg>, <e>]'1;
+[<ab> --> <gh>, <jk>]'1;
+[<ab> --> <df>]'1;
+}
+
+def main() {
+call SAMPLE();
+}
