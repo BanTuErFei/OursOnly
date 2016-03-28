@@ -1,0 +1,64 @@
+
+***********************************************
+
+    CONFIGURATION: 0
+    TIME: 0.0 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 58658
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 0
+    Multiset: ab
+    Internal membranes count: 1
+
+-----------------------------------------------
+
+    STEP: 1
+
+    Rules selected for SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 0
+    1 * #1 [ab]'1 --> [cd]$3
+
+***********************************************
+
+    CONFIGURATION: 1
+    TIME: 0.05 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 58658
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 3
+    Multiset: cd
+    Internal membranes count: 1
+
+-----------------------------------------------
+
+    STEP: 2
+
+    Rules selected for SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 3
+    1 * #2 [cd]'1 --> [fg]$1
+
+***********************************************
+
+    CONFIGURATION: 2
+    TIME: 0.173 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 58331
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 4
+    Multiset: fg
+    Internal membranes count: 1
+
+Halting configuration (No rule can be selected to be executed in the next step).

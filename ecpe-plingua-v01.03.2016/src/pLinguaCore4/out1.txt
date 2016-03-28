@@ -1,0 +1,158 @@
+Comparing files ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj and C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        }       
+
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        }       
+        private boolean isECPe()
+        {
+                return getPsystem().getAbstractPsystemFactory().getModelName().equals("ECPe_strings");
+        }       
+
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        | <MASTFUNC: "@mastfunc">
+    | <AMPERSAND: "&">
+}
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        | <MASTFUNC: "@mastfunc">
+        | <ENERGY: "e_"(<NATURAL_NUMBER>)+>
+        | <STR_ENERGY: (<STRING_OBJECT>)+(<ENERGY>)*>
+}
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+
+private void moduleCall() : {Token callToken;List parameterValues=new ArrayList();}{
+
+        <CALL><ID>{callToken=token;}(<LPAR>(parameterValue(parameterValues)(<COMMA>parameterValue(parameterValues))*)?<RPAR>)?
+        {if (!getCurrentEnvironment().isSafeMode()) doCall(callToken.image,callToken,parameterValues);}
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+
+private void moduleCall() : {Token callToken;List parameterValues=new ArrayList();}{    <CALL><ID>{callToken=token;}(<LPAR>(par
+ameterValue(parameterValues)(<COMMA>parameterValue(parameterValues))*)?<RPAR>)?
+        {if (!getCurrentEnvironment().isSafeMode()) doCall(callToken.image,callToken,parameterValues);}
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        byte ch;
+        Number energy=0;
+        List<InnerRuleMembrane> l = new ArrayList<InnerRuleMembrane>();
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        byte ch;
+        List<InnerRuleMembrane> l = new ArrayList<InnerRuleMembrane>();
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        <RSQUARE>
+        (label=label() |energy=energy())
+        (energy=energy())?
+        {return getCurrentEnvironment().isSafeMode()?null:new OuterRuleMembraneWithDissolutionOption(label,ch,energy.intValue()
+, ms,l,dissolves);}
+}
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        <RSQUARE>
+        (label=label())?
+        {return getCurrentEnvironment().isSafeMode()?null:new OuterRuleMembraneWithDissolutionOption(label,ch,ms,l,dissolves);}
+}
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+{
+        Number energy=0;
+        Label label;
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+{
+        Label label;
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        rsquare()
+        (label()|energy=energy(){m = CellLikeMembraneFactory.getCellLikeMembrane(label,parentMembrane) ;     m.setEnergy(energy
+.intValue());}) 
+        {
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        rsquare()
+        (label())?      
+        {
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+
+private Number energy():
+{
+        Number energy;
+}
+{
+        <DOLLAR>
+        energy=number()
+        {return energy;}
+}
+
+private void rule() : 
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+
+private void rule() : 
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        OuterRuleMembrane leftOuterRuleMembrane=null,secondRightOuterRuleMembrane=null;
+        Number ratio=0,priority=0, energy=0;    
+        boolean hasPriority=false,hasRatio=false;
+        boolean hasLeftEnergy=false, hasRightEnergy=false;
+        Token beginRuleToken,endRuleToken;
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        OuterRuleMembrane leftOuterRuleMembrane=null,secondRightOuterRuleMembrane=null;
+        Number ratio=0,priority=0;      
+        boolean hasPriority=false,hasRatio=false;
+        Token beginRuleToken,endRuleToken;
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        (label=rsquare()
+                 
+         ((energy=energy(){hasLeftEnergy=true;})|<ARROW>|<DOUBLE_ARROW>{doubleArrow=true;}){if (!getCurrentEnvironment().isSafe
+Mode())firstRightOuterRuleMembrane=new OuterRuleMembraneWithDissolutionOption(label,ch,true);}
+         (multiSet(rightMultiSet))?
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        (label=rsquare()
+         (<ARROW>|<DOUBLE_ARROW>{doubleArrow=true;}){if (!getCurrentEnvironment().isSafeMode())firstRightOuterRuleMembrane=new 
+OuterRuleMembraneWithDissolutionOption(label,ch,true);}
+         (multiSet(rightMultiSet))?
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+                        endRuleToken=token;
+                        leftOuterRuleMembrane=new OuterRuleMembrane(label,ch,energy.intValue(),leftOuterRuleMembraneMultiSet,le
+ftInner);
+                        LeftHandRule leftHandRule;
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_1\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+                        endRuleToken=token;
+                        leftOuterRuleMembrane=new OuterRuleMembrane(label,ch,leftOuterRuleMembraneMultiSet,leftInner);
+                        LeftHandRule leftHandRule;
+*****
+
+Comparing files ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj and C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_2\PLINGUACORE4\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        byte ch;
+        Number energy=0;
+        List<InnerRuleMembrane> l = new ArrayList<InnerRuleMembrane>();
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_2\PLINGUACORE4\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        byte ch;
+        Number energy;
+        List<InnerRuleMembrane> l = new ArrayList<InnerRuleMembrane>();
+*****
+
+***** ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PlinguaJavaCcParser.jj
+        rsquare()
+        (label()|energy=energy(){m = CellLikeMembraneFactory.getCellLikeMembrane(label,parentMembrane) ;     m.setEnergy(energy
+.intValue());}) 
+        {
+***** C:\USERS\Z370\DESKTOP\PLINGUAECPEDRAFT\PLINGUA4ECPEDRAFT\PLINGUACORE4_2\PLINGUACORE4\ORG\GCN\PLINGUACORE\PARSER\INPUT\PLINGUA\PLINGUAJAVACCPARSER.JJ
+        rsquare()
+        (label()|energy=energy(){m = CellLikeMembraneFactory.getCellLikeMembrane(label,parentMembrane);
+      m.setEnergy(energy.intValue());})?        
+        {
+*****
+

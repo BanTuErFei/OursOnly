@@ -1,0 +1,398 @@
+Comparing files PlinguaJavaCcParser.java and ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+
+***** PlinguaJavaCcParser.java
+    label = rsquare();
+         {if (true) return getCurrentEnvironment().isSafeMode()?null:new InnerRuleMembrane(label,ch,ms);}
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    label = rsquare();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case COLON:
+      //System.out.println("Innerrulemembrane");
+      break;
+    default:
+      jj_la1[35] = jj_gen;
+      ;
+    }
+         {if (true) return getCurrentEnvironment().isSafeMode()?null:new InnerRuleMembrane(label,ch,ms);}
+*****
+
+
+***** PlinguaJavaCcParser.java
+    }
+         {if (true) return getCurrentEnvironment().isSafeMode()?null:new OuterRuleMembrane(label,ch,ms,l);}
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    }
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case COLON:
+      //System.out.println("outerrulemembrane");
+      break;
+    default:
+      jj_la1[35] = jj_gen;
+      ;
+    }
+         {if (true) return getCurrentEnvironment().isSafeMode()?null:new OuterRuleMembrane(label,ch,ms,l);}
+*****
+
+
+
+***** PlinguaJavaCcParser.java
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case QUOTE:
+      label = label();
+      break;
+    case DOLLAR:
+      energy = energy();
+      break;
+    default:
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+   
+        case QUOTE:
+      label = label();
+//        break;
+  case DOLLAR:
+      energy= energy(); 
+          //System.out.println("ENERGYsss="+ energy);
+      break;
+        
+    default:
+*****
+
+***** PlinguaJavaCcParser.java
+      jj_la1[41] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case DOLLAR:
+      energy = energy();
+      break;
+    default:
+      jj_la1[42] = jj_gen;
+      ;
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+      jj_la1[41] = jj_gen;
+      ;
+*****
+
+***** PlinguaJavaCcParser.java
+    }
+         {if (true) return getCurrentEnvironment().isSafeMode()?null:new OuterRuleMembraneWithDissolutionOption(label,ch,energy
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    }
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case DOLLAR:
+      energy= energy(); 
+          //System.out.println("ENERGY ="+ energy);
+      break;
+         default:
+      jj_la1[41] = jj_gen;
+      ;
+    }
+         {if (true) return getCurrentEnvironment().isSafeMode()?null:new OuterRuleMembraneWithDissolutionOption(label,ch,energy
+*****
+
+
+
+
+
+***** PlinguaJavaCcParser.java
+  final private OuterRuleMembrane outerRuleMembrane() throws ParseException {
+        byte ch;
+        Label label;
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+  final private OuterRuleMembrane outerRuleMembrane() throws ParseException {
+
+                byte ch;
+        Label label;
+*****
+
+
+***** PlinguaJavaCcParser.java
+  final private CellLikeMembrane cellLikeMembrane(CellLikeMembrane parentMembrane) throws ParseException {
+        Number energy=0;
+        Label label;
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+  final private CellLikeMembrane cellLikeMembrane(CellLikeMembrane parentMembrane) throws ParseException {
+        Label label;
+*****
+
+***** PlinguaJavaCcParser.java
+        byte ch;
+        Token initToken,init=null,end=null;
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+        byte ch;
+        Number energy;
+        Token initToken,init=null,end=null;
+*****
+
+
+
+
+***** PlinguaJavaCcParser.java
+    case DOLLAR:
+      energy = energy();
+                                 m = CellLikeMembraneFactory.getCellLikeMembrane(label,parentMembrane) ;     m.setEnergy(energy
+.intValue());
+      break;
+    default:
+      jj_la1[47] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    case DOLLAR:
+      energy= energy();
+      m = CellLikeMembraneFactory.getCellLikeMembrane(label,parentMembrane);
+      m.setEnergy(energy.intValue());
+    default:
+      jj_la1[46] = jj_gen;
+      ;
+    }
+*****
+
+
+
+***** PlinguaJavaCcParser.java
+
+  final private Number priority() throws ParseException {
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+
+  
+  
+  final private Number energy() throws ParseException {
+         Number energy;
+           jj_consume_token(DOLLAR);
+    energy = number();
+           //System.out.println("CAME IN THE ENERGY FUNCTION");
+     {if(true) return energy;}
+         throw new Error("Missing return statement in function");
+  }
+  
+  final private Number priority() throws ParseException {
+*****
+
+***** PlinguaJavaCcParser.java
+
+  final private Number energy() throws ParseException {
+        Number energy;
+    jj_consume_token(DOLLAR);
+    energy = number();
+         {if (true) return energy;}
+    throw new Error("Missing return statement in function");
+  }
+
+  final private void rule() throws ParseException {
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+
+  final private void rule() throws ParseException {
+*****
+
+***** PlinguaJavaCcParser.java
+        OuterRuleMembrane leftOuterRuleMembrane=null,secondRightOuterRuleMembrane=null;
+        Number ratio=0,priority=0, energy=0;
+        boolean hasPriority=false,hasRatio=false;
+        boolean hasLeftEnergy=false, hasRightEnergy=false;
+        Token beginRuleToken,endRuleToken;
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+        OuterRuleMembrane leftOuterRuleMembrane=null,secondRightOuterRuleMembrane=null;
+        Number ratio=0,priority=0, energy1=0, energy2=0;
+        boolean hasPriority=false,hasRatio=false, hasLeftEnergy=false, hasRightEnergy=false;
+        Token beginRuleToken,endRuleToken;
+*****
+
+
+
+
+
+
+
+***** PlinguaJavaCcParser.java
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case DOLLAR:
+        energy = energy();
+                           hasLeftEnergy=true;
+        break;
+      case ARROW:
+        jj_consume_token(ARROW);
+        break;
+      case DOUBLE_ARROW:
+        jj_consume_token(DOUBLE_ARROW);
+                                                                        doubleArrow=true;
+        break;
+      default:
+        jj_la1[86] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+                                                                                            if (!getCurrentEnvironment().isSafe
+Mode())firstRightOuterRuleMembrane=new OuterRuleMembraneWithDissolutionOption(label,ch,true);
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        
+                 case DOLLAR:
+                        energy1=energy();
+                        hasLeftEnergy=true;
+                        //System.out.println("energy " + energy1);
+                        switch((jj_ntk==-1)?jj_ntk():jj_ntk) {
+                                case COMMA:
+                                        jj_consume_token(COMMA);
+                                case DOLLAR:
+                                        energy2=energy();
+                                        hasLeftEnergy=true;
+                        }
+                 case ARROW:
+                        jj_consume_token(ARROW);
+                        break;
+                 case DOUBLE_ARROW:
+                        jj_consume_token(DOUBLE_ARROW);
+                                                                         doubleArrow=true;
+                        break;
+                 
+                  default:
+                        jj_la1[85] = jj_gen;
+                        jj_consume_token(-1);
+                        throw new ParseException();
+      }
+                                                     if (!getCurrentEnvironment().isSafeMode())firstRightOuterRuleMembrane=new 
+OuterRuleMembraneWithDissolutionOption(label,ch,true);
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+*****
+
+
+
+***** PlinguaJavaCcParser.java
+                        endRuleToken=token;
+                        leftOuterRuleMembrane=new OuterRuleMembrane(label,ch,energy.intValue(),leftOuterRuleMembraneMultiSet,le
+ftInner);
+                        LeftHandRule leftHandRule;
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+                        endRuleToken=token;
+                        leftOuterRuleMembrane=new OuterRuleMembrane(label,ch,energy1.intValue(),energy2.intValue(),leftOuterRul
+eMembraneMultiSet,leftInner);
+                        LeftHandRule leftHandRule;
+*****
+
+
+
+***** PlinguaJavaCcParser.java
+80000000,0x80000000,0xbf01f700,0x0,0x80000000,0xc00e0000,0x0,0xc00e0000,0x0,0x0,0x0,0x80000000,0x0,0x40000000,0x0,0x0,0x0,0x0,0
+x80000000,0x80000000,0x0,0x0,0x80200000,0x0,0x0,0x0,0x0,0x80000000,0x80000000,0x0,0x0,0x80200000,0x0,0x80200000,0x0,0x80200000,
+0x0,0x80000000,0x0,0x0,0x0,0x0,0x0,0x80000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x80000000,0x0,0x0,0x0,0x800e
+0000,0x0,0x80000000,0x0,0x80000000,0x0,0x80000000,0x80000000,0x0,0x80000000,0x0,0x80000000,0x0,0x80200000,0x800000,0x0,0x0,0x80
+000000,0x0,0x0,0x0,0x0,0x0,0xbf01f700,0xbf01f700,0x80002800,0x2000,0x80002800,0x0,0x0,};
+   }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+80000000,0x80000000,0xbf01f700,0x0,0x80000000,0xc00e0000,0x0,0xc00e0000,0x0,0x0,0x0,0x80000000,0x0,0x40000000,0x0,0x0,0x0,0x0,0
+x80000000,0x80000000,0x0,0x0,0x80200000,0x0,0x0,0x0,0x80000000,0x80000000,0x0,0x0,0x80200000,0x0,0x80200000,0x0,0x80200000,0x0,
+0x80000000,0x0,0x0,0x0,0x0,0x0,0x80000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x80000000,0x0,0x0,0x0,0x800e0000
+,0x0,0x80000000,0x0,0x80000000,0x0,0x80000000,0x80000000,0x0,0x80000000,0x0,0x80000000,0x0,0x80200000,0x800000,0x0,0x0,0x800000
+00,0x0,0x0,0x0,0x0,0x0,0xbf01f700,0xbf01f700,0x80002800,0x2000,0x80002800,0x0,0x0,};
+   }
+*****
+
+***** PlinguaJavaCcParser.java
+000,0x1,0x200,0x1,0x1,0x802c5281,0x800,0x1,0xc4061,0x800,0xc4061,0x4000,0x100000,0xc0000,0x221,0x800,0x0,0x800,0x80200000,0x802
+00000,0xc0000,0x81,0x81,0x802c1000,0x2,0x81,0x802c1000,0x3,0x1,0x802c1000,0x81,0x81,0x802c1000,0x3,0x1,0x800,0x1,0x800,0x81,0x8
+00,0x81,0x800,0x41000000,0x800,0x41000000,0x800,0x221,0x41000000,0x800,0x4000,0x41000000,0x800,0x4000,0x41000000,0x800,0x4000,0
+x41000000,0x800,0x4000,0x800,0x1,0x800,0x4000,0x800,0xc4060,0x800,0x0,0x41000000,0x802c1221,0x4000,0x81,0x81,0xd,0x81,0x802c100
+0,0x81,0x802c1000,0x81,0x0,0x2004,0x20000,0x1,0xa000000,0xa000000,0x2a000000,0x800,0x10000,0x802c5281,0x802c5281,0x1,0x0,0x1,0x
+41000000,0x41000000,};
+   }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+000,0x1,0x200,0x1,0x1,0x802c5281,0x800,0x1,0xc4061,0x800,0xc4061,0x4000,0x100000,0xc0000,0x221,0x800,0x0,0x800,0x80200000,0x802
+00000,0xc0000,0x81,0x81,0x802c1000,0x2,0x81,0x802c1000,0x2,0x802c1000,0x81,0x81,0x802c1000,0x2,0x1,0x800,0x1,0x800,0x81,0x800,0
+x81,0x800,0x41000000,0x800,0x41000000,0x800,0x221,0x41000000,0x800,0x4000,0x41000000,0x800,0x4000,0x41000000,0x800,0x4000,0x410
+00000,0x800,0x4000,0x800,0x1,0x800,0x4000,0x800,0xc4060,0x800,0x0,0x41000000,0x802c1221,0x4000,0x81,0x81,0xc,0x81,0x802c1000,0x
+81,0x802c1000,0x81,0x0,0x2004,0x20000,0x1,0xa000000,0xa000000,0x2a000000,0x800,0x10000,0x802c5281,0x802c5281,0x1,0x0,0x1,0x4100
+0000,0x41000000,};
+   }
+*****
+
+***** PlinguaJavaCcParser.java
+      jj_la1_2 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x7f,0x0,0x0,0x0,0x0,0x
+0,0x0,0x0,0x0,0x1,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x1,0x0,0x0,0x1,0x0,0x0,0x0,0x0,0x1,0x1,0x0,0x0,0x1,0x0,0x1,0x0,0x1,0x0,0x1,0x0,0
+x0,0x0,0x0,0x0,0x1,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x1,0x1,0x0,0x1,
+0x0,0x1,0x0,0x1,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x7f,0x7f,0x0,0x0,0x0,0x0,0x0,};
+   }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+      jj_la1_2 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x7f,0x0,0x0,0x0,0x0,0x
+0,0x0,0x0,0x0,0x1,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x1,0x0,0x0,0x1,0x0,0x0,0x0,0x1,0x1,0x0,0x0,0x1,0x0,0x1,0x0,0x1,0x0,0x1,0x0,0x0,0
+x0,0x0,0x0,0x1,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x1,0x1,0x0,0x1,0x0,
+0x1,0x0,0x1,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x7f,0x7f,0x0,0x0,0x0,0x0,0x0,};
+   }
+*****
+
+***** PlinguaJavaCcParser.java
+    jj_gen = 0;
+    for (int i = 0; i < 108; i++) jj_la1[i] = -1;
+  }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    jj_gen = 0;
+    for (int i = 0; i < 107; i++) jj_la1[i] = -1;
+  }
+*****
+
+***** PlinguaJavaCcParser.java
+    jj_gen = 0;
+    for (int i = 0; i < 108; i++) jj_la1[i] = -1;
+  }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    jj_gen = 0;
+    for (int i = 0; i < 107; i++) jj_la1[i] = -1;
+  }
+*****
+
+***** PlinguaJavaCcParser.java
+    jj_gen = 0;
+    for (int i = 0; i < 108; i++) jj_la1[i] = -1;
+  }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    jj_gen = 0;
+    for (int i = 0; i < 107; i++) jj_la1[i] = -1;
+  }
+*****
+
+***** PlinguaJavaCcParser.java
+    jj_gen = 0;
+    for (int i = 0; i < 108; i++) jj_la1[i] = -1;
+  }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    jj_gen = 0;
+    for (int i = 0; i < 107; i++) jj_la1[i] = -1;
+  }
+*****
+
+***** PlinguaJavaCcParser.java
+    jj_gen = 0;
+    for (int i = 0; i < 108; i++) jj_la1[i] = -1;
+  }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    jj_gen = 0;
+    for (int i = 0; i < 107; i++) jj_la1[i] = -1;
+  }
+*****
+
+***** PlinguaJavaCcParser.java
+    jj_gen = 0;
+    for (int i = 0; i < 108; i++) jj_la1[i] = -1;
+  }
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    jj_gen = 0;
+    for (int i = 0; i < 107; i++) jj_la1[i] = -1;
+  }
+*****
+
+***** PlinguaJavaCcParser.java
+    }
+    for (int i = 0; i < 108; i++) {
+      if (jj_la1[i] == jj_gen) {
+***** ./ORG/GCN/PLINGUACORE/PARSER/INPUT/PLINGUA/PLINGUAJAVACCPARSER.JAVA
+    }
+    for (int i = 0; i < 107; i++) {
+      if (jj_la1[i] == jj_gen) {
+*****
+
+
+

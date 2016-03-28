@@ -1,0 +1,12 @@
+@model<evolution_communication>
+@priority=1;
+
+def main(){
+	@mu =[[]'2]'1;
+@ms(1)= ab;
+	[ab]'1--> [cd]$3;
+	[cd]'1-->[fg]$1;
+	cd[]'2$2-->[de];
+
+
+}

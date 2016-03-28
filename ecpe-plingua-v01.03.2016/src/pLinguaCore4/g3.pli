@@ -1,0 +1,27 @@
+@model<evolution_communication>
+def SAMP() {
+@mu = [ [ [ [ ]'4]'3]'2]'1;
+@ms(4) = ab,s,c;
+@ms(3) = bad,c;
+@ms(2) = fg,ab;
+@ms(1) = bad,ab*2;
+/* rules for membrane 1 -evolution */
+[bad]'1 --> [cd,hh]:1;
+[ab]'1 --> [fg,gh]:1;
+cd[]'2:4--> [cd]'2;
+
+/* rules for membrane 2 */
+fg[]'3:2 --> [fg];
+[ab]'3-->[fg]:3;
+
+/* rules for membrane 3*/
+c[s]'3:2 --> s[c]'3:1; 
+[bad]'3-->[s]:3; 
+
+/* rules for membrane 4*/
+[s]'4--> [bd]:5;
+[bd]'4:1 --> bd[];
+}
+def main() {
+call SAMP();
+}
