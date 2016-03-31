@@ -72,8 +72,8 @@ public interface IRule {
 	public int getMin();
 	public boolean isEvolution();
 	public boolean isAntiport();
-	public boolean isSendin();
-	public boolean isSendout();
+	public boolean isSendIn();
+	public boolean isSendOut();
 	public boolean isExecuted();
 	public void executeDummy(ChangeableMembrane membrane, int count);
 }

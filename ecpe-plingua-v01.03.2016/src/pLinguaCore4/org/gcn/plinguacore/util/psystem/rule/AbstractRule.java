@@ -425,8 +425,8 @@ public abstract class AbstractRule implements Serializable,IRule {
 
 	public int getMin(){return 0;}
 	public boolean isAntiport(){return false;}
-	public boolean isSendin(){return false;}
-	public boolean isSendout(){return false;}
+	public boolean isSendIn(){return false;}
+	public boolean isSendOut(){return false;}
 	public boolean isEvolution(){return false;}
 	public boolean isExecuted(){return true;}
 	public void executeDummy(ChangeableMembrane membrane, int count){}

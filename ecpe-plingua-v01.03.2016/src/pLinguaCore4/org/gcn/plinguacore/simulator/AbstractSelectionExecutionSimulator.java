@@ -46,6 +46,20 @@ import org.gcn.plinguacore.util.psystem.rule.checkRule.specificCheckRule.NoEvolu
 
 import org.gcn.plinguacore.util.psystem.cellLike.CellLikeConfiguration;
 import org.gcn.plinguacore.util.psystem.rule.AbstractRule;
+//newly added
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashSet;
+
+
+import org.gcn.plinguacore.simulator.cellLike.CellLikeSimulator;
+import org.gcn.plinguacore.util.psystem.rule.RulesSet;
+import org.gcn.plinguacore.util.psystem.rule.IPriorityRule;
+
+import org.gcn.plinguacore.util.RandomNumbersGenerator;
+
 //import org.gcn.plinguacore.util.psystem.rule.cellLike.Rule;
 
 /**
@@ -699,6 +713,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 	}
 	
+
 	
 	
 	protected void microStepSelectRules(Configuration cnf, Configuration tmpCnf)
@@ -716,29 +731,53 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 			tempMembrane.setEnergyTemp();
 			m.setEnergyTemp();
-
 		}
 
 		//JM: setting tempEnergy end
 
 
-		it = tmpCnf.getMembraneStructure().getAllMembranes()
-		.iterator();
+		it = tmpCnf.getMembraneStructure().getAllMembranes().iterator();
 		it1 = cnf.getMembraneStructure().getAllMembranes().iterator();
+		System.out.println("prio:" +getPsystem().getECPePriority());
+		if(getPsystem().getECPePriority()!=0){
 
-		while (it.hasNext()) {
-			ChangeableMembrane tempMembrane = (ChangeableMembrane) it.next();
-			ChangeableMembrane m = (ChangeableMembrane)it1.next();
+			boolean applied=false;
+			while (it.hasNext()) {
+				ChangeableMembrane tempMembrane = (ChangeableMembrane) it.next();
+				ChangeableMembrane m = (ChangeableMembrane)it1.next();
 
-			//System.out.println("AbsSelecExecSim::\n1st membrane: label = " + m.getLabel() + " energy = " + m.getEnergy());
-			//System.out.println("2nd membrane: label = " + tempMembrane.getLabel() + " energy = " + tempMembrane.getEnergy());
-			//JM: apparently int the 2nd membrane, the energy becomes 0
-			//JM: 2 things, where does tmpCnf comes from and where does it lead to??
-			//JM: for ECPE, it goes to NonDeterministicTransitionSimulator
+				//System.out.println("AbsSelecExecSim::\n1st membrane: label = " + m.getLabel() + " energy = " + m.getEnergy());
+				//System.out.println("2nd membrane: label = " + tempMembrane.getLabel() + " energy = " + tempMembrane.getEnergy());
+				//JM: apparently int the 2nd membrane, the energy becomes 0
+				//JM: 2 things, where does tmpCnf comes from and where does it lead to??
+				//JM: for ECPE, it goes to NonDeterministicTransitionSimulator
 
-			microStepSelectRules(m,tempMembrane);
+				if(microStepSelectRules(m,tempMembrane,false)){
+					applied=true;
+				}
 
+			}
+			if(!applied){
+				System.out.println("aasdfkhaskjdfajksdhfajksldhfkahfkalshdfkaslhdfjalshfdashdfalshdf");
+					it = tmpCnf.getMembraneStructure().getAllMembranes().iterator();
+		    	it1 = cnf.getMembraneStructure().getAllMembranes().iterator();
+				while (it.hasNext()) {
+				ChangeableMembrane tempM = (ChangeableMembrane) it.next();
+				ChangeableMembrane mem = (ChangeableMembrane)it1.next();
+				microStepSelectRules(mem, tempM, true);
+				}
+			}
 		}
+		//for nonECPe models
+		else{
+		
+			while (it.hasNext()) {
+				ChangeableMembrane tempMembrane = (ChangeableMembrane) it.next();
+				ChangeableMembrane m = (ChangeableMembrane)it1.next();
+				microStepSelectRules(m,tempMembrane);
+			}
+		}
+
 	}
 	
 	protected void microStepInit() {
@@ -747,6 +786,148 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 		selectedRules.clear();
 		initDate();
 	}
+	protected boolean microStepSelectRules(ChangeableMembrane m,
+			ChangeableMembrane temp, boolean checkedPrio) {
+		System.out.println("Checked");
+			int ecpe_priority = getPsystem().getECPePriority();
+			boolean applicable=false;
+			int n=2;
+			List<IRule>aux = new ArrayList<IRule>();
+
+				for (int i=n;i>0;i--)
+				{
+					
+					Iterator<IRule> it = getPsystem().getRules().iterator(
+							temp.getLabel(),
+							temp.getLabelObj().getEnvironmentID(),
+							temp.getCharge(),true);	
+					System.out.println("Im here: "+ temp.getLabel());
+				//	System.out.println("temp(evol) label " + temp.getLabel());
+
+					aux.clear();
+					while (it.hasNext())
+						aux.add(it.next());	
+
+					//System.out.println("aux " + aux.size());
+						
+					RulesSet.sortByPriority(aux);
+						
+					it = aux.iterator();
+					while(it.hasNext()){
+						IRule r = it.next();
+					//	System.out.println("aux : " + r.toString());
+					}
+
+					it = aux.iterator();
+					applicable=isPrioApplicable(ecpe_priority ,i,it, m, temp);
+					
+				}
+				if(checkedPrio){
+
+					for (int i=n;i>0;i--)
+					{
+						Iterator<IRule> it = getPsystem().getRules().iterator(
+									temp.getLabel(),
+									temp.getLabelObj().getEnvironmentID(),
+									temp.getCharge(),true);	
+
+							//System.out.println("temp(evol) label " + temp.getLabel());
+
+							aux.clear();
+							while (it.hasNext())
+								aux.add(it.next());	
+
+							//System.out.println("aux " + aux.size());
+								
+							RulesSet.sortByPriority(aux);
+								
+							it = aux.iterator();
+							while(it.hasNext()){
+								IRule r = it.next();
+							//	System.out.println("aux : " + r.toString());
+					}
+
+						it = aux.iterator();
+						if(ecpe_priority==1){
+							applicable=isPrioApplicable(2 ,i,it,m, temp);
+						}
+						else{
+							applicable=isPrioApplicable(1 ,i,it,m, temp);
+						}
+					}		
+									
+				}
+		return applicable;
+
+	}
+
+	public boolean isPrioApplicable(int prio,int i,Iterator<IRule> itr, ChangeableMembrane m, ChangeableMembrane temp){
+		Iterator<IRule> it= itr;
+		boolean applicable=false;
+		switch(prio){
+			//Iterator it= new
+			case 1:
+				HashSet<IRule> itEvolutionRule = new HashSet<IRule>();
+					while(it.hasNext()){
+						IRule r = it.next();
+						if(r.isEvolution())
+							itEvolutionRule.add(r);
+					}
+
+					Iterator<IRule> itEvol = itEvolutionRule.iterator();		
+					while (itEvol.hasNext()) {
+						IRule r = itEvol.next();	
+						long count = r.countExecutions(temp); 	
+
+						if (!(r instanceof IPriorityRule) && count>0 && i!=1){
+							applicable=true;
+							count = RandomNumbersGenerator.getInstance().nextLong(count);	
+						}
+						if (count > 0) {
+							applicable=true;
+							r.executeDummy(temp, (int)count);
+							selectRule(r, m, count);
+							removeLeftHandRuleObjects(temp, r, count);
+						}
+					}
+
+			break;
+
+			case 2:
+
+				HashSet<IRule> itCommunicationRule = new HashSet<IRule>();
+					while(it.hasNext()){
+						IRule r = it.next();
+						if(r.isSendIn() || r.isSendOut() || r.isAntiport())
+							itCommunicationRule.add(r);
+					}
+
+					Iterator<IRule> itComm = itCommunicationRule.iterator();
+						
+					while (itComm.hasNext()) {
+						
+						IRule r = itComm.next();	
+
+						long count = r.countExecutions(temp); 	
+						System.out.println("commRule:"+r.toString() + "  count: " + count);
+						if (!(r instanceof IPriorityRule) && count>0 && i!=1){
+							System.out.println(r.toString());
+							applicable=true;
+							count = RandomNumbersGenerator.getInstance().nextLong(count);	
+							}
+						if (count > 0) {
+							System.out.println(r.toString());
+							applicable=true;
+							r.executeDummy(temp, (int)count);
+							selectRule(r, m, count);
+							removeLeftHandRuleObjects(temp, r, count);
+						}
+					}
+			break;
+		}
+		return applicable;
+	}
+
 
 	/**
 	 * Select rules for a specific membrane

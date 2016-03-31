@@ -81,7 +81,7 @@ public abstract class Psystem implements Serializable {
 
 	private MembraneStructure membraneStructure;
 	
-	private int ecpe_priority = 2;
+	private int ecpe_priority = 0;
 
 	public static final transient Collection<? extends Membrane> emptyMembranes = new HashSet<Membrane>();
 	
