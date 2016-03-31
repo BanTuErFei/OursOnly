@@ -1,9 +1,9 @@
 /*Solution to 3-SAT in CPE mode*/
 @model<evolution_communication>
-
+@priority=2;
 def sanSatCPE(n){
 	@mu = [ []'2 []'3 ]'1;
-	@ms(1) = x{1},x{2},x{3},x{4},x{5},x{6},h0;
+	@ms(1) = x{1},x{2},x{3},x{4},x{5},x{6},h0, A{1,2,3,1,1,1,1}, A{1,4,5,0,1,0,2};
 
 	/*Label 1 - Evolution Rules*/
 	[x{d}]'1 --> [f{d,1},f{d,2}]: 1<=d<=3*n;
