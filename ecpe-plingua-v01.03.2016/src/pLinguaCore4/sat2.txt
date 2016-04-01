@@ -4,7 +4,7 @@
     CONFIGURATION: 0
     TIME: 0.0 s.
     MEMORY USED: 112128
-    FREE MEMORY: 77154
+    FREE MEMORY: 73654
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -41,9 +41,9 @@
 ***********************************************
 
     CONFIGURATION: 1
-    TIME: 0.071 s.
+    TIME: 0.137 s.
     MEMORY USED: 112128
-    FREE MEMORY: 74115
+    FREE MEMORY: 70599
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -76,9 +76,9 @@
 ***********************************************
 
     CONFIGURATION: 2
-    TIME: 0.537 s.
+    TIME: 0.67 s.
     MEMORY USED: 112128
-    FREE MEMORY: 29665
+    FREE MEMORY: 44438
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -111,9 +111,9 @@
 ***********************************************
 
     CONFIGURATION: 3
-    TIME: 0.566 s.
+    TIME: 0.705 s.
     MEMORY USED: 112128
-    FREE MEMORY: 28326
+    FREE MEMORY: 41809
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 3
@@ -146,9 +146,9 @@
 ***********************************************
 
     CONFIGURATION: 4
-    TIME: 0.81 s.
-    MEMORY USED: 186368
-    FREE MEMORY: 129008
+    TIME: 0.913 s.
+    MEMORY USED: 185344
+    FREE MEMORY: 154156
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -178,9 +178,9 @@
 ***********************************************
 
     CONFIGURATION: 5
-    TIME: 0.835 s.
-    MEMORY USED: 186368
-    FREE MEMORY: 126392
+    TIME: 0.941 s.
+    MEMORY USED: 185344
+    FREE MEMORY: 154156
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -212,9 +212,9 @@
 ***********************************************
 
     CONFIGURATION: 6
-    TIME: 1.117 s.
-    MEMORY USED: 186368
-    FREE MEMORY: 87154
+    TIME: 1.14 s.
+    MEMORY USED: 185344
+    FREE MEMORY: 128059
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -246,9 +246,9 @@
 ***********************************************
 
     CONFIGURATION: 7
-    TIME: 1.141 s.
-    MEMORY USED: 186368
-    FREE MEMORY: 87154
+    TIME: 1.163 s.
+    MEMORY USED: 185344
+    FREE MEMORY: 125449
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -277,9 +277,9 @@
 ***********************************************
 
     CONFIGURATION: 8
-    TIME: 1.434 s.
-    MEMORY USED: 186368
-    FREE MEMORY: 45300
+    TIME: 1.34 s.
+    MEMORY USED: 185344
+    FREE MEMORY: 99353
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -308,9 +308,9 @@
 ***********************************************
 
     CONFIGURATION: 9
-    TIME: 1.465 s.
-    MEMORY USED: 186368
-    FREE MEMORY: 45300
+    TIME: 1.368 s.
+    MEMORY USED: 185344
+    FREE MEMORY: 96743
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
@@ -339,9 +339,9 @@
 ***********************************************
 
     CONFIGURATION: 10
-    TIME: 1.739 s.
-    MEMORY USED: 186368
-    FREE MEMORY: 139412
+    TIME: 1.589 s.
+    MEMORY USED: 185344
+    FREE MEMORY: 73256
     TOTAL MEMORY: 932352
 
     MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
