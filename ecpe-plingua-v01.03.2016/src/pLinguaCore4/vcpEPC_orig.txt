@@ -1,0 +1,570 @@
+
+***********************************************
+
+    CONFIGURATION: 0
+    TIME: 0.0 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 57689
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 0
+    Multiset: v{1}, v{2}, v{3}, v{4}, v{5}, a0, b0, A{1,2}, A{1,3}, A{1,5}, A{2,3}, A{3,4}, A{4,5}, c*3, d*3
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 1
+
+    Rules selected for SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 0
+    1 * #1 [A{1,2}]'1 --> [s{1}]$1
+    1 * #21 [v{1}]'1 --> [vp{1}]$1
+    1 * #13 [A{2,3}]'1 --> [s{3}]$1
+    1 * #33 [a0]'1 --> [a1]$1
+    1 * #24 [v{4}]'1 --> [vp{4}]$1
+    1 * #28 [b0]'1 --> [b1]$1
+    1 * #22 [v{2}]'1 --> [vp{2}]$1
+    1 * #10 [A{4,5}]'1 --> [s{4}]$1
+    3 * #26 [c]'1 --> [cp]$2
+    1 * #17 [A{1,5}]'1 --> [s{5}]$1
+    1 * #6 [A{3,4}]'1 --> [s{3}]$1
+    1 * #2 [A{1,3}]'1 --> [s{1}]$1
+    1 * #23 [v{3}]'1 --> [vp{3}]$1
+    1 * #25 [v{5}]'1 --> [vp{5}]$1
+    3 * #27 [d]'1 --> [dp]$1
+
+***********************************************
+
+    CONFIGURATION: 1
+    TIME: 0.043 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 57361
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 22
+    Multiset: s{1}*2, vp{1}, s{3}*2, a1, vp{4}, b1, vp{2}, s{4}, cp*3, s{5}, vp{3}, vp{5}, dp*3
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 2
+
+    Rules selected for MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    3 * #54 cp[]'2$1 --> [cp]
+    1 * #45 vp{2}[]'2$1 --> [vp{2}]
+    1 * #44 vp{1}[]'2$1 --> [vp{1}]
+    1 * #48 vp{5}[]'2$1 --> [vp{5}]
+    1 * #47 vp{4}[]'2$1 --> [vp{4}]
+    1 * #46 vp{3}[]'2$1 --> [vp{3}]
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
+    3 * #73 dp[]'3$1 --> [dp]
+    1 * #74 a1[]'3$1 --> [a1]
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    1 * #84 b1[]'4$1 --> [b1]
+
+***********************************************
+
+    CONFIGURATION: 2
+    TIME: 0.391 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 57033
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: cp*3, vp{2}, vp{1}, vp{5}, vp{4}, vp{3}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
+    Multiset: dp*3, a1
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: b1
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 9
+    Multiset: s{1}*2, s{3}*2, s{4}, s{5}
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 3
+
+    Rules selected for MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    1 * #41 [vp{4}]'2 --> [p{4}]
+    3 * #43 [cp]'2 --> []$1
+    1 * #39 [vp{2}]'2 --> [p{2}]
+    1 * #38 [vp{1}]'2 --> [p{1}]
+    1 * #40 [vp{3}]'2 --> [p{3}]
+    1 * #42 [vp{5}]'2 --> [p{5}]
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 0
+    3 * #55 [dp]'3 --> []$1
+    1 * #60 [a1]'3 --> [a2]$1
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    1 * #81 [b1]'4 --> [b2]$1
+
+***********************************************
+
+    CONFIGURATION: 3
+    TIME: 0.413 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 56705
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 3
+    Multiset: p{4}, p{2}, p{1}, p{3}, p{5}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 4
+    Multiset: a2
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 1
+    Multiset: b2
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 9
+    Multiset: s{1}*2, s{3}*2, s{4}, s{5}
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 4
+
+    Rules selected for MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 3
+    1 * #53 s{5}[p{5}]'2$1,$1 --> [s{5}]p{5}
+    1 * #51 s{3}[p{3}]'2$1,$1 --> [s{3}]p{3}
+    1 * #52 s{4}[p{4}]'2$1,$1 --> [s{4}]p{4}
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 4
+    1 * #77 [a2]'3$1 --> []a2
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 1
+    1 * #88 [b2]'4$1 --> []b2
+
+***********************************************
+
+    CONFIGURATION: 4
+    TIME: 0.691 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 56378
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 3
+    Multiset: #
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 6
+    Multiset: s{1}*2, s{3}, p{5}, p{3}, p{4}, a2, b2
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 5
+
+    Rules selected for SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 6
+    1 * #34 [a2]'1 --> [a3]$1
+    1 * #29 [b2]'1 --> [b3]$1
+
+***********************************************
+
+    CONFIGURATION: 5
+    TIME: 0.712 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 56378
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 3
+    Multiset: #
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 8
+    Multiset: s{1}*2, s{3}, p{5}, p{3}, p{4}, a3, b3
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 6
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 3
+    1 * #67 p{5}[]'3$1 --> [p{5}]
+    1 * #75 a3[]'3$1 --> [a3]
+    1 * #65 p{3}[]'3$1 --> [p{3}]
+    1 * #66 p{4}[]'3$1 --> [p{4}]
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    1 * #85 b3[]'4$1 --> [b3]
+
+***********************************************
+
+    CONFIGURATION: 6
+    TIME: 1.001 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 56050
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 3
+    Multiset: p{5}, a3, p{3}, p{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: b3
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 3
+    Multiset: s{1}*2, s{3}
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 7
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 3
+    1 * #58 [p{3}]'3 --> [u{3}*3]
+    1 * #61 [a3]'3 --> [a4]$1
+    1 * #59 [p{4}]'3 --> [u{4}*3]
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    1 * #80 [b3]'4 --> [b4]$1
+
+***********************************************
+
+    CONFIGURATION: 7
+    TIME: 1.025 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 55722
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 4
+    Multiset: p{5}, u{3}*3, a4, u{4}*3
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 1
+    Multiset: b4
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 3
+    Multiset: s{1}*2, s{3}
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 8
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 4
+    1 * #70 s{3}[u{3}]'3$1,$1 --> [s{3}]u{3}
+    1 * #78 [a4]'3$1 --> []a4
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 1
+    1 * #89 [b4]'4$1 --> []b4
+
+***********************************************
+
+    CONFIGURATION: 8
+    TIME: 1.319 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 55395
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 2
+    Multiset: p{5}, u{3}*2, u{4}*3, s{3}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 2
+    Multiset: s{1}*2, u{3}, a4, b4
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 9
+
+    Rules selected for SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 2
+    1 * #35 [a4]'1 --> [a5]$1
+    1 * #30 [b4]'1 --> [b5, m]$2
+
+***********************************************
+
+    CONFIGURATION: 9
+    TIME: 1.333 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 55395
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 2
+    Multiset: p{5}, u{3}*2, u{4}*3, s{3}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 5
+    Multiset: s{1}*2, u{3}, a5, b5, m
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 10
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 2
+    1 * #76 a5[]'3$1 --> [a5]
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    1 * #86 b5[]'4$1 --> [b5]
+
+***********************************************
+
+    CONFIGURATION: 10
+    TIME: 1.658 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 55067
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 2
+    Multiset: p{5}, u{3}*2, u{4}*3, s{3}, a5
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: b5
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 3
+    Multiset: s{1}*2, u{3}, m
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 11
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 2
+    1 * #62 [a5]'3 --> [no]
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    1 * #82 [b5]'4 --> [b6]$1
+
+***********************************************
+
+    CONFIGURATION: 11
+    TIME: 1.69 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 55067
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 2
+    Multiset: p{5}, u{3}*2, u{4}*3, s{3}, no
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 1
+    Multiset: b6
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 3
+    Multiset: s{1}*2, u{3}, m
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 12
+
+    Rules selected for MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 2
+    1 * #79 m[no]'3$1,$1 --> [m]no
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 1
+    1 * #90 [b6]'4$1 --> []b6
+
+***********************************************
+
+    CONFIGURATION: 12
+    TIME: 1.97 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 54739
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 1
+    Multiset: p{5}, u{3}*2, u{4}*3, s{3}, m
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 2
+    Multiset: s{1}*2, u{3}, no, b6
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 13
+
+    Rules selected for SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 2
+    1 * #31 [b6]'1 --> [b7]$1
+
+***********************************************
+
+    CONFIGURATION: 13
+    TIME: 1.981 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 54739
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 1
+    Multiset: p{5}, u{3}*2, u{4}*3, s{3}, m
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: #
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 3
+    Multiset: s{1}*2, u{3}, no, b7
+    Internal membranes count: 3
+
+-----------------------------------------------
+
+    STEP: 14
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    1 * #87 b7[]'4$1 --> [b7]
+
+    Rules selected for SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 3
+    1 * #37 [no]'1$1 --> []no
+
+***********************************************
+
+    CONFIGURATION: 14
+    TIME: 2.231 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 54412
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 1
+    Multiset: p{5}, u{3}*2, u{4}*3, s{3}, m
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    Multiset: b7
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 1
+    Multiset: s{1}*2, u{3}
+    Internal membranes count: 3
+
+    ENVIRONMENT: no
+
+-----------------------------------------------
+
+    STEP: 15
+
+    Rules selected for MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 0
+    1 * #83 [b7]'4 --> [b8]$1
+
+***********************************************
+
+    CONFIGURATION: 15
+    TIME: 2.243 s.
+    MEMORY USED: 62976
+    FREE MEMORY: 54412
+    TOTAL MEMORY: 912384
+
+    MEMBRANE ID: 1, Label: 2, Charge: 0, Energy: 0
+    Multiset: p{2}, p{1}, s{5}, s{3}, s{4}
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 2, Label: 3, Charge: 0, Energy: 1
+    Multiset: p{5}, u{3}*2, u{4}*3, s{3}, m
+    Parent membrane ID: 0
+
+    MEMBRANE ID: 3, Label: 4, Charge: 0, Energy: 1
+    Multiset: b8
+    Parent membrane ID: 0
+
+    SKIN MEMBRANE ID: 0, Label: 1, Charge: 0, Energy: 1
+    Multiset: s{1}*2, u{3}
+    Internal membranes count: 3
+
+    ENVIRONMENT: no
+
+Halting configuration (No rule can be selected to be executed in the next step).

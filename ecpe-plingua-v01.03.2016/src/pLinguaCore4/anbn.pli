@@ -1,5 +1,4 @@
 @model<evolution_communication>
-@priority=1;
 def SAMP() {
 @mu = [ [ ]'2]'1;
 @ms(2) = S;
