@@ -1,0 +1,21 @@
+/*This pli file test the effect of different priorities*/
+
+@model<evolution_communication>
+
+def main(){
+	@mu = [[]'2]'1;
+	@ms(1) = a,d;
+
+	[a]'1 --> [b]$3; 
+	[b]'1 --> [c]$1;
+
+	b[]'2$1 --> [b];
+	d[]'2$1 --> [d];
+	[f]'1$2 --> f[];
+
+
+	[b]'2 --> [c]$2;
+	[d]'2 --> [f]$1;
+	c[f]'2$1,$1 --> f[c];	
+
+}
