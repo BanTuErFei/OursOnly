@@ -1,0 +1,25 @@
+@model<evolution_communication>
+@priority=2;
+
+
+def main(){
+	call divisibility(m, n);
+}
+
+def divisibility(m, n){
+@mu=[[]'2]'1;
+@ms(1)=a*m, h0;
+
+[a]'1--> [b]$1;
+[h0]'1--> [h1];
+[h1]'1--> [h2]$1;
+[h2]'1--> [yes];
+[b]'2 -->[no]$1;
+
+b*n[]'2$n-->[b*n];
+b[no]'2$1$1-->no[b];
+[yes]'1$1-->yes[];
+[no]'1$1-->no[];
+
+
+}
