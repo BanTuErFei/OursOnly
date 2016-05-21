@@ -63,9 +63,6 @@ public final class NonDeterministicTransitionSimulator extends
 			ChangeableMembrane temp) {	//JM: 2 Membranes with the same structure
 		// TODO Auto-generated method stub
 	
-		
-
-		//System.out.println("ecpe ecpe_priority = " + ecpe_priority);
 		int n=2;
 		List<IRule>aux = new ArrayList<IRule>();
 
@@ -87,14 +84,11 @@ public final class NonDeterministicTransitionSimulator extends
 				while (it.hasNext()) {
 					IRule r = it.next();	
 					long count = r.countExecutions(temp); 
-					System.out.println("NonDeterministic : r = " + r.toString() + " count = " + count);	
 
 					if (!(r instanceof IPriorityRule) && count>0 && i!=1)
 						count = RandomNumbersGenerator.getInstance().nextLong(count);	
 						
-					
 					if (count > 0) {
-
 						r.executeDummy(temp, (int)count);
 
 						selectRule(r, m, count);

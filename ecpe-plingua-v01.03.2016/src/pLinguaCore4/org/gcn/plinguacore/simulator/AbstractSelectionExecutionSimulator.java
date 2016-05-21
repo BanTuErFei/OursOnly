@@ -60,7 +60,6 @@ import org.gcn.plinguacore.util.psystem.rule.IPriorityRule;
 
 import org.gcn.plinguacore.util.RandomNumbersGenerator;
 
-//import org.gcn.plinguacore.util.psystem.rule.cellLike.Rule;
 
 /**
  * An abstract class for simulators which execute simulation steps in three microsteps:
@@ -89,11 +88,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 	public AbstractSelectionExecutionSimulator(Psystem psystem) {
 		super(psystem);
-		//System.out.println("AbstractSelectionExecutionSimulator");
 		selectedRules = new LinkedHashMap<Integer, Pair<ChangeableMembrane, MultiSet<Object>>>();
-		//configurationPrev = new Object(); //JM: Because configuration cannot be instantiated
-		
-
 
 		// TODO Auto-generated constructor stub
 	}
@@ -103,8 +98,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	}
 
 	protected abstract String getHead(ChangeableMembrane m);
-	
-	//protected abstract String getHeadPrev(ChangeableMembrane m);	//JM: Returns the previous head with the previous energy, not the energy after rule execution
 
 	/**
 	 * Print short information in the info-channel about current configuration
@@ -113,7 +106,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	 *            It is true if this is the first configuration
 	 */
 	private void printInfoShort(boolean first) {
-		//System.out.println("AbstractSelectionExecutionSimulator (printInfoShort) : sameConfig " + sameConfig);
 		if ((!selectedRules.isEmpty() || first) && sameConfig==false) {
 
 			getInfoChannel().println(
@@ -129,8 +121,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 				getInfoChannel().println("    MEMORY: " + mem + " Kb");	//JM: memory
 			}
 			getInfoChannel().println();
-
-			//System.out.println("AbstractSelectionExecutionSimulator :: came here for the initial configurationPrev");
 
 			printInfoMembraneShort(currentConfig.getMembraneStructure());
 			if (!currentConfig.getEnvironment().isEmpty()) {
@@ -160,11 +150,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 					"This is a non-halting configuration.");
 
 		}
-		else{
-			/*getInfoChannel()
-				.println(
-					"We don't know");*/
-		}
 
 		configurationPrev = (CellLikeConfiguration)currentConfig.clone();	//JM: Added for trap symbol
 
@@ -178,9 +163,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	 *            It is true if this is the first configuration
 	 */
 	private void printInfo(boolean first) {
-		//System.out.println("AbstractSelectionExecutionSimulator (printInfo) : sameConfig " + sameConfig);
-		//System.out.println("(1)hasSelectedRules() == " + hasSelectedRules());
-		//System.out.println("sameConfig == " + sameConfig);
 
 		if ( (hasSelectedRules() || first) && (!sameConfig)) {
 			if (!first) {
@@ -189,39 +171,28 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 				getInfoChannel().println();
 				getInfoChannel().println(
 						"    STEP: " + currentConfig.getNumber());
-				//System.out.println("\nAbstractExecutionSimulator : STEP " + currentConfig.getNumber());
 
 			}
 			Iterator<Pair<ChangeableMembrane, MultiSet<Object>>> it1 = selectedRules
 					.values().iterator();
-
-
-			//System.out.println("rules.hasNext() == " + it1.hasNext());			
+			
 			while (it1.hasNext()) {
 				int tempEnergy=0, tempParentEnergy=0;
 				Pair<ChangeableMembrane, MultiSet<Object>> pair = it1.next();
 				MultiSet<Object> rules = pair.getSecond();
 				Iterator<Object> it = rules.entrySet().iterator();
-				//System.out.println("pair.toString() = " + pair.toString());	
+
 				if (it.hasNext()) {
 					getInfoChannel().println();
 					getInfoChannel().println(
 							"    Rules selected for "
 									+ getHead(pair.getFirst()));
 
-					//System.out.println();
-					//System.out.println(
-					//		"    Rules selected for "
-					//				+ getHead(pair.getFirst()));
 
 					while (it.hasNext()) {
 						Object r = it.next();
 						getInfoChannel().println(
-								"    " + rules.count(r) + " * " + r.toString());	//JM: this toString implements everything HAHAHAHA
-
-						//System.out.println(
-						//	"    " + rules.count(r) + " * " + r.toString());
-
+								"    " + rules.count(r) + " * " + r.toString());
 					}
 				}
 			}
@@ -245,10 +216,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			}
 			getInfoChannel().println();
 
-			//System.out.println("AbstractSelectionExecutionSimulator : printInfo :: after Config");
-
-			
-
 			Iterator<? extends Membrane> it = currentConfig.getMembraneStructure().getAllMembranes()
 						.iterator();
 				while (it.hasNext())
@@ -261,8 +228,8 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 			} 
 
-			//This marks the end of the conditional if(hasSelectedRules() && !sameConfig chuchu)
-			else if(!hasSelectedRules() || emptyMultiSet()){	//emptyMultiSet - bacause elements in selectedRules cannot be removed, it has to be checked this way
+			/* This marks the end of the conditional if(hasSelectedRules() && !sameConfig */
+			else if(!hasSelectedRules() || emptyMultiSet()){	/* emptyMultiSet - bacause elements in selectedRules cannot be removed, it has to be checked this way */
 
 				getInfoChannel()
 						.println(
@@ -270,112 +237,14 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 			}
 			else if(sameConfig){
-
-
 				getInfoChannel()
 						.println(
 								"This is a non-halting configuration.");
-				//System.out
-				//		.println(
-				//				"This is a non-halting configuration");
-
-				//System.out.println("(2)hasSelectedRules() == " + hasSelectedRules());
-
-				//We just gonna print what's after the configuration
-
-				/*if (!first) {
-					getInfoChannel().println(
-							"-----------------------------------------------");
-					getInfoChannel().println();
-					getInfoChannel().println(
-							"    STEP: " + currentConfig.getNumber());
-					//System.out.println("\nAbstractExecutionSimulator : STEP " + currentConfig.getNumber());
-
-				}*/		
-
-
-				Iterator<Pair<ChangeableMembrane, MultiSet<Object>>> it1 = selectedRules
-					.values().iterator();
-
-				
-			//System.out.println("(2) rules.hasNext() == " + it1.hasNext());	
-				while (it1.hasNext()) {
-					/*getInfoChannel().println("hasSelectedRules()");*/
-					//System.out.println("inside rules.hasNext()");	
-					int tempEnergy=0, tempParentEnergy=0;
-					Pair<ChangeableMembrane, MultiSet<Object>> pair = it1.next();
-
-					//System.out.println("pair.toString() = " + pair.toString());	
-					MultiSet<Object> rules = pair.getSecond();
-					Iterator<Object> it = rules.entrySet().iterator();
-
-					//System.out.println("rules.entrySet.hasNext() == " + it.hasNext());	
-					if (it.hasNext()) {
-						//System.out.println("inside rules.entrySet.hasNext()");
-						getInfoChannel().println();
-						getInfoChannel().println(
-								"    Rules selected for "
-										+ getHead(pair.getFirst()));
-
-					//	System.out.println();
-					//	System.out.println(
-					//			"    Rules selected for "
-					//					+ getHead(pair.getFirst()));
-
-						while (it.hasNext()) {
-							Object r = it.next();
-							getInfoChannel().println(
-									"    " + rules.count(r) + " * " + r.toString());	//JM: this toString implements everything HAHAHAHA
-
-							//System.out.println(
-							//	"    " + rules.count(r) + " * " + r.toString());
-
-						}
-					}
-				}
-				getInfoChannel().println();
-				getInfoChannel().println(
-						"***********************************************");
-				getInfoChannel().println();
-				getInfoChannel().println(
-						"    CONFIGURATION: " + (currentConfig.getNumber()));
-				if (isTimed()) {
-					getInfoChannel().println("    TIME: " + getTime() + " s.");
-					getInfoChannel().println(
-							"    MEMORY USED: "
-									+ Runtime.getRuntime().totalMemory() / 1024);
-					getInfoChannel().println(
-							"    FREE MEMORY: " + Runtime.getRuntime().freeMemory()
-									/ 1024);
-					getInfoChannel().println(
-							"    TOTAL MEMORY: " + Runtime.getRuntime().maxMemory()
-									/ 1024);
-				}
-				getInfoChannel().println();
-
-
-
-				//System.out.println("AbstractSelectionExecutionSimulator : printInfo :: after Config");
-
-				
-
-				Iterator<? extends Membrane> it = currentConfig.getMembraneStructure().getAllMembranes()
-							.iterator();
-					while (it.hasNext())
-						printInfoMembrane((ChangeableMembrane)it.next());
-					if (!currentConfig.getEnvironment().isEmpty()) {
-						getInfoChannel().println(
-								"    ENVIRONMENT: " + currentConfig.getEnvironment());	//JM: environment
-						getInfoChannel().println();
-					}
-
-				//End of printing
-
 			}
 			else{
 				getInfoChannel()
 					.println(
-						"I don't know");
+						"Error");
 
 			}
 
@@ -402,7 +271,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 	public boolean equals(){
 
-		//JM: This one returns equals if the currentConfig and the previous config are the same
+		/* This one returns equals if the currentConfig and the previous config are the same */
 
 		Iterator<? extends Membrane> itTemp = currentConfig.getMembraneStructure().getAllMembranes()
 				.iterator();
@@ -412,8 +281,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 		if(currentConfig.getMembraneStructure().getAllMembranes().size() != configurationPrev.getMembraneStructure().getAllMembranes().size()){
 			return false;
 		}
-
-		//JM: This assumes that 
 		while(itTemp.hasNext()){
 			if(itPrevTemp.hasNext()){
 				if(((ChangeableMembrane)itTemp.next()).equals((ChangeableMembrane)itPrevTemp.next()))
@@ -440,8 +307,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	}
 	@Override
 	protected final boolean specificStep() throws PlinguaCoreException {
-
-		//System.out.println("AbstractSelectionExecutionSimulator : specificStep :: entered , sameConfig = " + sameConfig);		
+	
 		if (firstTime) {
 			if (getVerbosity()>0)
 			{
@@ -454,29 +320,23 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			firstTime = false;
 		}
 		microStepInit();
-		
-		//JM: Before this, set the energy for everything first
-
 		microStepSelectRules();
 		
 		if (hasSelectedRules()) {
-			microStepExecuteRules();	//JM: see?? execution goes first before selection!!!
-			//currentConfig = (Configuration)currentConfig.clone();
+			microStepExecuteRules();
 			
 			currentConfig.setNumber(currentConfig.getNumber()+1);
 		}
 
-		//JM: printing
+		/* For printing */
 		if (getVerbosity()>0)
 		{
 			if (getVerbosity() > 1){
 				sameConfig = equals();
-				//System.out.println("AbstractSelectionExecutionSimulator (specificStep) : sameConfig = " + sameConfig);
 				printInfo(false);
 			}
 			else{
 				sameConfig = equals();
-				//System.out.println("AbstractSelectionExecutionSimulator (specificStep) : sameConfig = " + sameConfig);
 				printInfoShort(false);
 			}
 		}
@@ -486,55 +346,24 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 		return (hasSelectedRules() && !sameConfig);
 	}
 	
-	protected boolean hasSelectedRules()
-	{
+	protected boolean hasSelectedRules(){
 		return !selectedRules.isEmpty();
 	}
 	
 	protected void executeRule(IRule r,ChangeableMembrane m,MultiSet<String>environment,long count)
-	{
-		
-		//System.out.println("AbstractSelectionExecutionSimulator: executeRule " + r.toString() + " with count " + count);
-		//System.out.println("executeRule before: :: label = " + m.getLabel() + " energy = " + m.getEnergy());
+	{	
 		boolean isExecuted = r.execute(m,environment,count);
-		//boolean isExecuted = r.isExecuted();
-
-		//System.out.println("AbstractSelectionExecutionSim IsExecuted = " + isExecuted);
-		//System.out.println("m.getId() " + m.getId());
-		//System.out.println("Rule " + r.toString());
 
 
-		if(isExecuted == false){
-			//System.out.println("AbstractSelectionExecutionSimulator:: " + "inside isExecuted");
-			//JM: remove the rule from the selectedRules
-			
-
-			//System.out.println("AbstractSelectionExecutionSimulator : executeRule :: contains m's ID = " + selectedRules.containsKey(m.getId()));
-			
+		if(isExecuted == false){	
 			Pair<ChangeableMembrane, MultiSet<Object>> tempPair = new Pair<ChangeableMembrane, MultiSet<Object>>(m,
 					new HashMultiSet<Object>());
 
 			tempPair = selectedRules.get(m.getId());
-			//System.out.println("PUTSELECTEDRULES = " + tempPair.toString() + " with count " + count);
-			
 			MultiSet<Object> tempMulti = tempPair.getSecond();
-
-			//System.out.println("tempMulti = " + tempMulti.toString());
 			tempMulti.remove(r,count);
-			//System.out.println("tempMulti (after removal) = " + tempMulti.toString());
-			//System.out.println("tempMulti (after removal) count = " + tempMulti.size());
 
-
-			//We should remove the pair altogether if the multiSet of object is already empty
-			if(tempMulti.size() == 0){
-				//we need to remove tempPair to selectedRules
-				//System.out.println("tempMulti size == 0");
-				//selectedRules.keySet().remove((Object)(m.getId()));
-
-			}
-
-
-			if(selectedRules.containsKey(m.getId())){	//JM: Of course it contains it
+			if(selectedRules.containsKey(m.getId())){
 				selectedRules.put(m.getId(),tempPair);
 
 				System.out.println("putSelectedRules (after executionsDone) = " + tempPair.toString());
@@ -550,11 +379,11 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			
 		}
 		else{
-			//JM: Get the number of Executions
+			/* Get the number of executions */
 
 			if(r instanceof AbstractRule){
 				if(((AbstractRule)r).getExecutionsDone()!=0){
-					//JM: Change the number of executions in the selected rule
+					/* Change the number of executions in the selected rule */
 					
 					Pair<ChangeableMembrane, MultiSet<Object>> tempPair = new Pair<ChangeableMembrane, MultiSet<Object>>(m,
 					new HashMultiSet<Object>());
@@ -570,78 +399,55 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			}
 		}
 
-
-		//System.out.println("executeRule after: :: label = " + m.getLabel() + " energy = " + m.getEnergy());
 	}
 	
 	protected void microStepExecuteRules() {
 
-		//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules");	//JM: it goes through here per step	
-
-		//JM: to set the prevEnergy
+		/* Set the prevEnergy */
 		Iterator<Pair<ChangeableMembrane, MultiSet<Object>>> itTemp = selectedRules
-		.values().iterator();	//JM: selectedRules iterator for values	
-		while (itTemp.hasNext()) {	//JM: while there is still a pair; goes through here per membrane
-			Pair<ChangeableMembrane, MultiSet<Object>> pTemp = itTemp.next();	//JM: values iterator
+		.values().iterator();
+		
+		while (itTemp.hasNext()) {	
+			Pair<ChangeableMembrane, MultiSet<Object>> pTemp = itTemp.next();
 			ChangeableMembrane mTemp = pTemp.getFirst();
 			mTemp.setEnergyPrev();
 		}
-		//JM: setting prevnergy finished
-
-
 
 		Iterator<Pair<ChangeableMembrane, MultiSet<Object>>> it = selectedRules
-				.values().iterator();	//JM: selectedRules iterator for values
-		MultiSet<IRule> ms1 = new HashMultiSet<IRule>();	//JM: multiset of IRule
-		MultiSet<IRule> ms2 = new HashMultiSet<IRule>();	//JM: multiset of IRule
+				.values().iterator();
+		MultiSet<IRule> ms1 = new HashMultiSet<IRule>();
+		MultiSet<IRule> ms2 = new HashMultiSet<IRule>();
 		
 
-		//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules :: after setting previous energy");
+		while (it.hasNext()) {
+			Pair<ChangeableMembrane, MultiSet<Object>> p = it.next();
 
-
-
-		while (it.hasNext()) {	//JM: while there is still a pair; goes through here per membrane
-			Pair<ChangeableMembrane, MultiSet<Object>> p = it.next();	//JM: values iterator
-
-			//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules :: inside membrane");
-			//JM: we also need to add the energy produced in the evolution in the end so as not to disturb with the communication rules in the same step
-			//JM: get all the energy produced in the evolution
-			//JM: add all energy per time step per membrane
+			/* Need to add the energy produced in the evolution in the end so as not to disturb with the communication rules in the same step */
+			
 			int energyEvol = 0;
 			
-			MultiSet<Object> ms = p.getSecond();	//JM: multisets
-			ChangeableMembrane m = p.getFirst();	//JML membranes
+			MultiSet<Object> ms = p.getSecond();
+			ChangeableMembrane m = p.getFirst();	
 			ms1.clear();
 			ms2.clear();
-			Iterator<Object> it1 = ms.entrySet().iterator();	//JM: iterator for multiset
+			Iterator<Object> it1 = ms.entrySet().iterator();
+			while (it1.hasNext()) {		/* While there is still iterator for multiset; It goes through here per rule */
 
-			while (it1.hasNext()) {		//JM: while there is still iterator for multiset; I think it goes through here per rule
-				//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules :: inside a rule");
-				//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules : before rule execution energy generated : " + energyEvol);
-				Object o = it1.next();	//JM: multiset has object Rules
+				Object o = it1.next();	/* Multiset has object Rules */
 				if (o instanceof IRule)
 				{
 					IRule r = (IRule)o;
 					if (r.dissolves())
-					{
 						ms2.add(r);
-					}
 					else
 					if (noEvolution.checkRule(r))
-					{
 						ms1.add(r, ms.count(r));
-						//System.out.println("REGLA: "+r.toString());
-					}
-					else
-						//System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: else part");
-						executeRule(r,m,currentConfig.getEnvironment(),ms.count(r));	//JM: executeRule
+					else{
+						executeRule(r,m,currentConfig.getEnvironment(),ms.count(r));
 						
-						//JM: I added this
-						if(r instanceof AbstractRule){
+						if(r instanceof AbstractRule)
 							energyEvol = energyEvol + ((AbstractRule)r).energyAdded;
-
-							//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules : after rule "  + r.toString() + " execution energy generated : " + energyEvol);
-						}		
+					}	
 				}
 
 				
@@ -649,36 +455,25 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			
 
 
-			Iterator<IRule>it2= ms1.entrySet().iterator();	//JM: this is for the noevolution
+			Iterator<IRule>it2= ms1.entrySet().iterator();
 			while (it2.hasNext()) {
 				IRule r = it2.next();
-				//System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: noevolution");
 				executeRule(r,m,currentConfig.getEnvironment(),ms1.count(r));
 
-				if(r instanceof AbstractRule){
+				if(r instanceof AbstractRule)
 					energyEvol = energyEvol + ((AbstractRule)r).energyAdded;
-
-					//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules : after rule "  + r.toString() + " execution energy generated : " + energyEvol);
-				}	
 				
 			}
 			it2 = ms2.entrySet().iterator();
 			
-			while (it2.hasNext()) {	//JM: this is for dissolves
+			while (it2.hasNext()) {	
 				IRule r = it2.next();
-				//System.out.println("AbstractSelectionExecutionSimulator :: before executeRule :: dissolution");
 				executeRule(r,m,currentConfig.getEnvironment(),ms2.count(r));
 
-				if(r instanceof AbstractRule){
+				if(r instanceof AbstractRule)
 					energyEvol = energyEvol + ((AbstractRule)r).energyAdded;
-
-					//System.out.println("AbstractSelectionExecutionSimulator : microStepExecuteRules : after rule "  + r.toString() + " execution energy generated : " + energyEvol);
-				}
 				
 			}
-
-			//System.out.println("AbstractSelectionExecutionSimulator : energyEvol = " + energyEvol);
-			//System.out.println("AbstractSelectionExecutionSimulator : energy of membrane after = " + (m.getEnergy() + energyEvol));
 			m.setEnergy(m.getEnergy() + energyEvol);
 		
 		}
@@ -687,16 +482,11 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	
 
 	public void selectRule(Object r, ChangeableMembrane m, long count) {
-
-		//System.out.println("AbstractSelectionExecutionSimulator: selectRule");
-		//System.out.println("AbstractSelectionExecutionSimulator SelectRule :: label = " + m.getLabel() + " energy in the membrane = " + m.getEnergy());
-		//System.out.println("AbstractSelectionExecutionSimulator : selectRule " + r.toString() + " count = " + count);
-		
+	
 		Pair<ChangeableMembrane, MultiSet<Object>> p;
 		if (selectedRules.containsKey(m.getId()))
 			p = selectedRules.get(m.getId());
 		else {
-			//System.out.println("AbstractSelectionExecutionSimulator : selectRule :: Does Not containsKey" );
 			p = new Pair<ChangeableMembrane, MultiSet<Object>>(m,
 					new HashMultiSet<Object>());
 
@@ -718,9 +508,7 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	
 	protected void microStepSelectRules(Configuration cnf, Configuration tmpCnf)
 	{
-		//System.out.println("AbstractSelectionExecutionSimulator : microStepSelectRules >>");
-
-		//JM: Before all of this, set the tempEnergy first
+		/* Before all of this, set the tempEnergy first */
 		Iterator<? extends Membrane> it = tmpCnf.getMembraneStructure().getAllMembranes()
 		.iterator();
 		Iterator<? extends Membrane> it1 = cnf.getMembraneStructure().getAllMembranes().iterator();
@@ -733,12 +521,8 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 			m.setEnergyTemp();
 		}
 
-		//JM: setting tempEnergy end
-
-
 		it = tmpCnf.getMembraneStructure().getAllMembranes().iterator();
 		it1 = cnf.getMembraneStructure().getAllMembranes().iterator();
-		System.out.println("prio:" +getPsystem().getECPePriority());
 		if(getPsystem().getECPePriority()!=0){
 
 			boolean applied=false;
@@ -746,19 +530,12 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 				ChangeableMembrane tempMembrane = (ChangeableMembrane) it.next();
 				ChangeableMembrane m = (ChangeableMembrane)it1.next();
 
-				//System.out.println("AbsSelecExecSim::\n1st membrane: label = " + m.getLabel() + " energy = " + m.getEnergy());
-				//System.out.println("2nd membrane: label = " + tempMembrane.getLabel() + " energy = " + tempMembrane.getEnergy());
-				//JM: apparently int the 2nd membrane, the energy becomes 0
-				//JM: 2 things, where does tmpCnf comes from and where does it lead to??
-				//JM: for ECPE, it goes to NonDeterministicTransitionSimulator
-
 				if(microStepSelectRules(m,tempMembrane,false)){
 					applied=true;
 				}
 
 			}
 			if(!applied){
-				System.out.println("aasdfkhaskjdfajksdhfajksldhfkahfkalshdfkaslhdfjalshfdashdfalshdf");
 					it = tmpCnf.getMembraneStructure().getAllMembranes().iterator();
 		    	it1 = cnf.getMembraneStructure().getAllMembranes().iterator();
 				while (it.hasNext()) {
@@ -768,9 +545,9 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 				}
 			}
 		}
-		//for nonECPe models
+
+		/*For nonECPe models */
 		else{
-		
 			while (it.hasNext()) {
 				ChangeableMembrane tempMembrane = (ChangeableMembrane) it.next();
 				ChangeableMembrane m = (ChangeableMembrane)it1.next();
@@ -782,7 +559,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	
 	protected void microStepInit() {
 
-		//System.out.println("microStepInit");
 		selectedRules.clear();
 		initDate();
 	}
@@ -801,21 +577,17 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 							temp.getLabel(),
 							temp.getLabelObj().getEnvironmentID(),
 							temp.getCharge(),true);	
-					System.out.println("Im here: "+ temp.getLabel());
-				//	System.out.println("temp(evol) label " + temp.getLabel());
 
 					aux.clear();
 					while (it.hasNext())
 						aux.add(it.next());	
 
-					//System.out.println("aux " + aux.size());
 						
 					RulesSet.sortByPriority(aux);
 						
 					it = aux.iterator();
 					while(it.hasNext()){
 						IRule r = it.next();
-					//	System.out.println("aux : " + r.toString());
 					}
 
 					it = aux.iterator();
@@ -830,21 +602,15 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 									temp.getLabel(),
 									temp.getLabelObj().getEnvironmentID(),
 									temp.getCharge(),true);	
-
-							//System.out.println("temp(evol) label " + temp.getLabel());
-
 							aux.clear();
 							while (it.hasNext())
 								aux.add(it.next());	
-
-							//System.out.println("aux " + aux.size());
 								
 							RulesSet.sortByPriority(aux);
 								
 							it = aux.iterator();
 							while(it.hasNext()){
 								IRule r = it.next();
-							//	System.out.println("aux : " + r.toString());
 					}
 
 						it = aux.iterator();
@@ -865,7 +631,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 		Iterator<IRule> it= itr;
 		boolean applicable=false;
 		switch(prio){
-			//Iterator it= new
 			case 1:
 				HashSet<IRule> itEvolutionRule = new HashSet<IRule>();
 					while(it.hasNext()){
