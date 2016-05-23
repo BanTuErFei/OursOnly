@@ -39,7 +39,7 @@ cp[]'2$1--> [cp];
 
 /*evolution rules for membrane 3*/
 [dp]'3--> []$1;
-[p{i}]'3--> [u{i}*(n-2)] : 1 <= i < j, 1<j<= n;
+[p{i}]'3--> [u{i}*(n-2)] : 1<=i<n; /*1 <= i < j, 1<j<= n;*/
 [a0]'3--> [a1];
 /*communication rules for membrane 3*/
 p{i}[]'3$1-->[p{i}]: 1 <= i <= n;
