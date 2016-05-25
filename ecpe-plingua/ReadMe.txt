@@ -52,13 +52,17 @@ Test Inputs and Outputs
 	-3sat.pli and vcp.pli are based on (1).
 	-anbn.pli is based on (2).
 
-
 Folders
 —————-
 src - contains the P-Lingua source code
 input - contains the .pli files.
 	input/Mecosim - contains input for Mecosim
-	input/General Inputs - contains input for general solutions	
+	input/General Inputs - contains input for general solutions	 
+
+
+Bugs Fixed from the Previous Version
+05/23/2016 - edited vertexCover.pli. Omit unused variable to remove warnings in line 42.
+05/25/2016 - added General Inputs folder in input folder. Moved some input with general solution to this folder
 
 
 References:
