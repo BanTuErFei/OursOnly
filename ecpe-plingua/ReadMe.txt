@@ -53,6 +53,14 @@ Test Inputs and Outputs
 	-anbn.pli is based on (2).
 
 
+Folders
+—————-
+src - contains the P-Lingua source code
+input - contains the .pli files.
+	input/Mecosim - contains input for Mecosim
+	input/General Inputs - contains input for general solutions	
+
+
 References:
 (1) Hernandez, Nestine Hope., Juayong, Richelle Ann., Adorna, Henry. "On Communication Complexity of Some Hard Problems in ECPe Systems". Membrane Computing 14th International Conference. 2013.
 (2) Juayong, Richelle Ann. (2014). Introduction to Evolution-Communication P systems with Energy [CS 297 Presentation]. Retrieved from https://sites.google.com/site/richjuayong/class-works/cs-297-introduction-to-ecpe-systems.

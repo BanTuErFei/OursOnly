@@ -3,7 +3,7 @@
 
 
 def main(){
-	call divisibility(m, n);
+	call divisibility(m, n);	/*Change m and n with integers. Returns true if m is divisible by n. False otherwise*/
 }
 
 def divisibility(m, n){

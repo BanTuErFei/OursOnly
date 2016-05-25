@@ -3,7 +3,7 @@
 @priority=2;
 def sanSatCPE(n){
 	@mu = [ []'2 ... []'n+1 ]'1;
-	@ms(1) = x{1},x{2},...,x{3*n},h0,A{i1,i2,i3,d1,d2,d3,2},...,A{i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n},n+1}: 1<=i{j}<=3*n, 0<=d{j}<=1;
+	@ms(1) = x{1},x{2},...,x{3*n},h0,A{i1,i2,i3,d1,d2,d3,2},...,A{i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n},n+1}: 1<=i{j}<=3*n, 0<=d{j}<=1; /*Change  i1,i2,i3,d1,d2,d3,...i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n} accordingly. i1...i{3*n} represents the variable for each clause while d1...d{3*n} represents the truth value of i1...i{3*n) for each clause respectively.*/
 
 	/*Label 1 - Evolution Rules*/
 	[x{d}]'1 --> [f{d,2},...,f{d,n+1}]: 1<=d<=3*n;
@@ -28,7 +28,7 @@ def sanSatCPE(n){
 	[yes]'1$1 --> yes[];
 	[no]'1$1 --> no[];
 
-	/*For all membranes - Evolution*/
+	/*For all membranes - Evolution*/ /*Since i can't be a variable, these evolution rules have to be repeated for every membrane*/
 	[B{i1,i2,i3,0,0,0,i}]'i --> [s{i1},s{i2},s{i3},b0]$1: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	[B{i1,i2,i3,0,0,1,i}]'i --> [s{i1},s{i2},p{i3},b0]$1: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	[B{i1,i2,i3,0,1,0,i}]'i --> [s{i1},p{i2},s{i3},b0]$1: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
@@ -39,7 +39,7 @@ def sanSatCPE(n){
 	[B{i1,i2,i3,1,1,1,i}]'i --> [p{i1},p{i2},p{i3},b0]$1: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	[b0]'i --> [b1]: 2<=i<=n+1;
 
-	/*For all membranes - communication*/
+	/*For all membranes - communication*/ /*Since i can't be a variable, these communication rules have to be repeated for every membrane*/
 	B{i1,i2,i3,0,0,0,i}[]'i$1 --> [B{i1,i2,i3,0,0,0,i}]: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	B{i1,i2,i3,0,0,1,i}[]'i$1 --> [B{i1,i2,i3,0,0,1,i}]: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	B{i1,i2,i3,0,1,0,i}[]'i$1 --> [B{i1,i2,i3,0,1,0,i}]: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;

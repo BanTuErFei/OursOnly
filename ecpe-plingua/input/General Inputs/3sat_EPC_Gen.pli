@@ -3,7 +3,7 @@
 @priority=1;
 def sanSat(n){
 	@mu = [ []'2 ... []'n+2 ]1;
-	@ms(1) = x{1},x{2},...,x{3*n},a0,A{i1,i2,i3,d1,d2,d3,2},...,A{i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n},n+1}: 1<=i{j}<=3*n, 0<=d{j}<=1;
+	@ms(1) = x{1},x{2},...,x{3*n},a0,A{i1,i2,i3,d1,d2,d3,2},...,A{i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n},n+1}: 1<=i{j}<=3*n, 0<=d{j}<=1; /*Change  i1,i2,i3,d1,d2,d3,...i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n} accordingly. i1...i{3*n} represents the variable for each clause while d1...d{3*n} represents the truth value of i1...i{3*n) for each clause respectively.*/
 
 	/*Label 1 - Evolution Rules*/
 	[x{d}]'1 --> [f{d,2},...,f{d,n+1}]: 1<=d<=3*n;
@@ -28,8 +28,8 @@ def sanSat(n){
 	/*Label 1 - Communication Rules*/
 	[yes]'1$(n+2) --> yes[];
 	[no]'1$1 --> no[];
-
-	/*For all membranes - Evolution*/
+ 
+	/*For all membranes - Evolution*/  /*Since i can't be a variable, these evolution rules have to be repeated for every membrane*/
 	[B{i1,i2,i3,0,0,0,i}]'i --> [s{i1},s{i2},s{i3},b0]$3: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	[B{i1,i2,i3,0,0,1,i}]'i --> [s{i1},s{i2},p{i3},b0]$3: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	[B{i1,i2,i3,0,1,0,i}]'i --> [s{i1},p{i2},s{i3},b0]$3: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
@@ -40,7 +40,7 @@ def sanSat(n){
 	[B{i1,i2,i3,1,1,1,i}]'i --> [p{i1},p{i2},p{i3},b0]$3: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	[b1]'i --> [b2]: 2<=i<=n+1;
 
-	/*For all membranes - communication*/
+	/*For all membranes - communication*/ /*Since i can't be a variable, these communication rules have to be repeated for every membrane*/
 	B{i1,i2,i3,0,0,0,i}[]'i$1 --> [B{i1,i2,i3,0,0,0,i}]: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	B{i1,i2,i3,0,0,1,i}[]'i$1 --> [B{i1,i2,i3,0,0,1,i}]: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
 	B{i1,i2,i3,0,1,0,i}[]'i$1 --> [B{i1,i2,i3,0,1,0,i}]: 1<=i1<=3*n, 1<=i2<=3*n, 1<=i3<=3*n, 2<=i<=n+1;
@@ -55,12 +55,12 @@ def sanSat(n){
 	f{d,i}[p{d}]'i$1,$2 --> p{d}[f{d,i}]: 1<=d<=3*n, 2<=i<=n+1;
 	t{d,i}[s{d}]'i$1,$2 --> s{d}[t{d,i}]: 1<=d<=3*n, 2<=i<=n+1;
 
-	/*Label n+2 - Evolution*/
+	/*Label n+2 - Evolution*/ /*Replace label n+2 with an integer*/
 	[a1]'n+2 --> [a2]$1;
 	[a3]'n+2 --> [a4]$1;
 	[Omega]'n+2 --> [no]$1;
 
-	/*Label n+2 - Communication*/
+	/*Label n+2 - Communication*/ /*Replace label n+2 with an integer*/
 	Omega[]'n+2$1 --> [Omega];
 	a1[]'n+2$1 --> [a1];
 	[a2]'n+2$1 --> a2[];
@@ -72,5 +72,5 @@ def sanSat(n){
 }
 
 def main(){
-	call sanSat(n);
+	call sanSat(n);		/*Change n with the number of clauses of you sat problem.*/
 }

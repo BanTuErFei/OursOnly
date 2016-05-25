@@ -1,9 +1,9 @@
 @model<evolution_communication>
-@priority=0;
+@priority=2;
 
 
 def main(){
-	call divisibility(m, n);
+	call divisibility(m, n); /*Change m and n with integers. Returns true if m is divisible by n. False otherwise*/
 }
 
 def divisibility(m, n){
@@ -11,16 +11,15 @@ def divisibility(m, n){
 @ms(1)=a*m, h0;
 
 [a]'1--> [b]$1;
-[h0]'1--> [h1]$1;
-[h1]'1--> [h2];
-[h2]'1--> [h3];
-[h3]'1--> [h4];
-[h4]'1--> [yes]$1;
-[b]'2--> [no]$1;
+[h0]'1--> [h1];
+[h1]'1--> [h2]$1;
+[h2]'1--> [yes];
+[b]'2 -->[no]$1;
 
 b*n[]'2$n-->[b*n];
 b[no]'2$1$1-->no[b];
 [yes]'1$1-->yes[];
 [no]'1$1-->no[];
+
 
 }
