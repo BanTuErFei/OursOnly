@@ -636,7 +636,6 @@ class CellLikeRule extends AbstractRule {
 	
 	protected boolean executeRightHand(ChangeableMembrane membrane, MultiSet<String> environment, long executions
 			) {
-		//System.out.println("CellLikeRule :: executeRightHand");
 
 		boolean ret = true;
 
