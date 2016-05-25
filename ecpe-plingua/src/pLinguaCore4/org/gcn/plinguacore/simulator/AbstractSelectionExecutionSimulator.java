@@ -365,8 +365,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 
 			if(selectedRules.containsKey(m.getId())){
 				selectedRules.put(m.getId(),tempPair);
-
-				System.out.println("putSelectedRules (after executionsDone) = " + tempPair.toString());
 			}
 			else{
 				Pair<ChangeableMembrane, MultiSet<Object>> tempPair2 = new Pair<ChangeableMembrane, MultiSet<Object>>(m,
@@ -564,7 +562,6 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 	}
 	protected boolean microStepSelectRules(ChangeableMembrane m,
 			ChangeableMembrane temp, boolean checkedPrio) {
-		System.out.println("Checked");
 			int ecpe_priority = getPsystem().getECPePriority();
 			boolean applicable=false;
 			int n=2;
@@ -674,14 +671,11 @@ public abstract class AbstractSelectionExecutionSimulator extends AbstractSimula
 						IRule r = itComm.next();	
 
 						long count = r.countExecutions(temp); 	
-						System.out.println("commRule:"+r.toString() + "  count: " + count);
 						if (!(r instanceof IPriorityRule) && count>0 && i!=1){
-							System.out.println(r.toString());
 							applicable=true;
 							count = RandomNumbersGenerator.getInstance().nextLong(count);	
 							}
 						if (count > 0) {
-							System.out.println(r.toString());
 							applicable=true;
 							r.executeDummy(temp, (int)count);
 							selectRule(r, m, count);

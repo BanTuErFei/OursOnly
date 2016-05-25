@@ -357,7 +357,6 @@ public abstract class Psystem implements Serializable {
 	}
 
 	public void setECPePriority(int ecpe_priority){
-		System.out.println("Psystem : ecpe_priority : " + ecpe_priority);
 		this.ecpe_priority = ecpe_priority;
 		
 	}
