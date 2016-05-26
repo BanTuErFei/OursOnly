@@ -1,9 +1,12 @@
+/*Solves divisibility of integer m by n where m=>n>=1
+Sends yes to the environment if m is divisible by n, no otherwise
+*/
 @model<evolution_communication>
 @priority=2;
 
 
 def main(){
-	call divisibility(m, n); /*Change m and n with integers. Returns true if m is divisible by n. False otherwise*/
+	call divisibility(30, 6); 
 }
 
 def divisibility(m, n){

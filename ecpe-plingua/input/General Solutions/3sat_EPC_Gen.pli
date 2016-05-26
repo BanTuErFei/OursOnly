@@ -1,4 +1,6 @@
-/*Solution to 3-SAT in EPC mode*/
+/*Solution to 3-SAT in EPC mode
+* n is the number of clauses
+*/
 @model<evolution_communication>
 @priority=1;
 def sanSat(n){

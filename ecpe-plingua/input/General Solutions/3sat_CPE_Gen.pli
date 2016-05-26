@@ -1,9 +1,12 @@
-/*Solution to 3-SAT in CPE mode*/
+/*Solution to 3-SAT in CPE mode
+* n is the number of clauses
+*/
 @model<evolution_communication>
 @priority=2;
 def sanSatCPE(n){
-	@mu = [ []'2 ... []'n+1 ]'1;
-	@ms(1) = x{1},x{2},...,x{3*n},h0,A{i1,i2,i3,d1,d2,d3,2},...,A{i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n},n+1}: 1<=i{j}<=3*n, 0<=d{j}<=1; /*Change  i1,i2,i3,d1,d2,d3,...i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n} accordingly. i1...i{3*n} represents the variable for each clause while d1...d{3*n} represents the truth value of i1...i{3*n) for each clause respectively.*/
+	@mu = [ []'2 ... []'n+1 ]'1;/*add []'i where n=>i>=3 place of ...*/ /*replace n+1 with actual value*/
+	@ms(1) = x{1},x{2},...,x{3*n},h0, A{i1,i2,i3,d1,d2,d3,2},...,A{i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n},n+1}: 1<=i{j}<=3*n, 0<=d{j}<=1; 
+/*Change  i1,i2,i3,d1,d2,d3,...i{(3*n)-2},i{(3*n)-1},i{3*n},d{(3*n)-2},d{(3*n)-1},d{3*n} accordingly. i1...i{3*n} represents the variable for each clause while d1...d{3*n} represents the truth value of i1...i{3*n) for each clause respectively.*/
 
 	/*Label 1 - Evolution Rules*/
 	[x{d}]'1 --> [f{d,2},...,f{d,n+1}]: 1<=d<=3*n;
@@ -55,5 +58,5 @@ def sanSatCPE(n){
 }
 
 def main(){
-	call sanSatCPE(2);
+	call sanSatCPE(n); /*replace this n with the actual value of n*/
 }
